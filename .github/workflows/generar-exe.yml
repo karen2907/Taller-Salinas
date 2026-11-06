@@ -11,10 +11,10 @@ jobs:
       - name: 1. Descargar Codigo
         uses: actions/checkout@v4
 
-      - name: 2. Configurar Node.js
+      - name: 2. Configurar Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: 3. Instalar Dependencias
         run: npm install --legacy-peer-deps
