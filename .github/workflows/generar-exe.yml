@@ -25,29 +25,10 @@ jobs:
       - name: 5. Compilar Aplicacion Web
         run: npm run build
 
-      - name: 6. Crear archivo index.js de arranque
-        run: |
-          node -e "const fs=require('fs'); fs.writeFileSync('index.js', \`
-          const { app, BrowserWindow } = require('electron');
-          const path = require('path');
-          function createWindow() {
-            const win = new BrowserWindow({
-              width: 1400,
-              height: 900,
-              title: 'MotoGestión FX - Sistema de Taller',
-              webPreferences: { nodeIntegration: false, contextIsolation: true }
-            });
-            win.loadFile(path.join(__dirname, 'dist/index.html'));
-            win.setMenuBarVisibility(false);
-          }
-          app.whenReady().then(createWindow);
-          app.on('window-all-closed', () => { if (process.platform !== 'darwin') app.quit(); });
-          \`.trim());"
+      - name: 6. Empaquetar Instalador .EXE para Windows
+        run: npx electron-builder --win --config.directories.output=dist-installer --config.win.target=nsis --config.productName="MotoGestion-FX"
 
-      - name: 7. Empaquetar Instalador .EXE para Windows
-        run: npx electron-builder --win --config.directories.output=dist-installer --config.win.target=nsis --config.productName="MotoGestion-FX" --config.files="dist/**" --config.files="index.js"
-
-      - name: 8. Subir Instalador .EXE
+      - name: 7. Subir Instalador .EXE
         uses: actions/upload-artifact@v4
         with:
           name: MotoGestion-Setup-Windows-EXE
