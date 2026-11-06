@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office" 
+      xmlns:w="urn:schemas-microsoft-com:office:word" 
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+  <meta charset="utf-8">
+  <title>Guía Técnica de Código y Modificaciones</title>
+  <!--[if gte mso 9]>
+  <xml>
+    <w:WordDocument>
+      <w:View>Print</w:View>
+      <w:Zoom>100</w:Zoom>
+      <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+  </xml>
+  <![endif]-->
+  <style>
+    @page Section1 {
+      size: 8.5in 11.0in;
+      margin: 1.0in 1.0in 1.0in 1.0in;
+      mso-header-margin: 0.5in;
+      mso-footer-margin: 0.5in;
+      mso-paper-source: 0;
+    }
+    div.Section1 {
+      page: Section1;
+    }
+    body {
+      font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.6;
+      color: #1e293b;
+      background-color: #ffffff;
+    }
+    .header-banner {
+      background-color: #0f172a;
+      color: #ffffff;
+      padding: 18pt 24pt;
+      border-radius: 6pt;
+      margin-bottom: 24pt;
+      border-bottom: 4pt solid #0284c7;
+    }
+    .header-badge {
+      display: inline-block;
+      background-color: #0284c7;
+      color: #ffffff;
+      font-size: 9pt;
+      font-weight: bold;
+      padding: 3pt 8pt;
+      border-radius: 3pt;
+      text-transform: uppercase;
+      letter-spacing: 1pt;
+      margin-bottom: 8pt;
+    }
+    .footer-note {
+      margin-top: 36pt;
+      padding-top: 12pt;
+      border-top: 1pt solid #cbd5e1;
+      font-size: 9pt;
+      color: #64748b;
+      text-align: center;
+    }
+    @media print {
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .header-banner {
+        background-color: #0f172a !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      table tr th {
+        background-color: #0f172a !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="Section1">
+  <div class="header-banner">
+    <div class="header-badge">GUÍA DE DESARROLLO</div>
+    <h1 style="color: #ffffff; margin: 0; font-size: 24pt; font-weight: bold; border: none; padding: 0;">Guía Técnica de Código y Modificaciones</h1>
+    <p style="color: #94a3b8; font-size: 12pt; margin: 6pt 0 0 0;">Desarrollo en Java 17+ / JavaFX 21 - Arquitectura MVC & Patrón DAO</p>
+    <div style="margin-top: 12pt; font-size: 9.5pt; color: #cbd5e1; border-top: 1pt solid #334155; padding-top: 8pt;">
+      <span><strong>Sistema:</strong> MotoGestión FX v2.4.0-PRO</span> &nbsp;|&nbsp;
+      <span><strong>Fecha:</strong> Octubre 2026</span> &nbsp;|&nbsp;
+      <span><strong>Documento Oficial de Entrega</strong></span>
+    </div>
+  </div>
+
+  <h1 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 22pt; font-weight: bold; border-bottom: 2pt solid #0284c7; padding-bottom: 6pt; margin-top: 24pt; margin-bottom: 10pt;">GUÍA TÉCNICA DE CÓDIGO Y MODIFICACIONES</h1>
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">DESARROLLO EN JAVA 17+ / JAVAFX 21 - ARQUITECTURA MVC & PATRÓN DAO</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Para:</strong> Desarrolladores de Software, Ingenieros de Sistemas y Arquitectos Java</p>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Versión:</strong> 2.4.0</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">TABLA DE CONTENIDO</h3>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Estructura de Directorios del Proyecto Maven</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Cómo Agregar Nuevos Repuestos y Piezas al Catálogo</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Cómo Incorporar Nuevas Marcas, Modelos y Cilindrajes de Motos</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> Cómo Modificar o Agregar Nuevos Puntos Interactivos (Hotspots) en la Moto</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>5.</strong> Cómo Crear un Nuevo DAO o Agregar Consultas SQL</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>6.</strong> Cómo Modificar las Vistas FXML y Estilos CSS</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>7.</strong> Configuración de Marca y Logo por Código Java (<code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">AppConfig.java</code>)</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>8.</strong> Gestión Transaccional con HikariCP (<code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">DatabaseConnection.java</code>)</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">1. ESTRUCTURA DE DIRECTORIOS DEL PROYECTO MAVEN</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">El proyecto sigue la convención estándar de Apache Maven:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">mototaller-javafx/
+├── pom.xml                                   # Configuración de dependencias Maven
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/mototaller/
+│   │   │       ├── MainApp.java              # Clase principal JavaFX Application
+│   │   │       ├── config/
+│   │   │       │   ├── AppConfig.java        # Constantes de marca, logo y rutas
+│   │   │       │   └── DatabaseConnection.java# Pool Singleton HikariCP
+│   │   │       ├── model/                    # Entidades POJO JavaFX
+│   │   │       │   ├── Repuesto.java
+│   │   │       │   ├── Proveedor.java
+│   │   │       │   ├── MovimientoKardex.java
+│   │   │       │   ├── FacturaVenta.java
+│   │   │       │   └── ItemCarrito.java
+│   │   │       ├── dao/                      # Contratos / Interfaces de acceso a datos
+│   │   │       │   ├── RepuestoDAO.java
+│   │   │       │   ├── KardexDAO.java
+│   │   │       │   └── VentaDAO.java
+│   │   │       ├── dao/impl/                 # Implementaciones JDBC nativas
+│   │   │       │   ├── RepuestoDAOImpl.java
+│   │   │       │   ├── KardexDAOImpl.java
+│   │   │       │   └── VentaDAOImpl.java
+│   │   │       └── controller/               # Controladores de interfaz gráfica
+│   │   │           ├── MainViewController.java
+│   │   │           └── MotorcycleExplorerController.java
+│   │   └── resources/
+│   │       ├── database.properties           # Credenciales y URL de JDBC activa
+│   │       ├── sql/
+│   │       │   ├── schema_postgresql.sql     # Script DDL para PostgreSQL
+│   │       │   └── schema_sqlite.sql         # Script DDL para SQLite
+│   │       ├── fxml/
+│   │       │   ├── MainView.fxml             # Layout XML de la interfaz
+│   │       │   └── MotorcycleExplorer.fxml
+│   │       ├── css/
+│   │       │   └── dark_theme.css            # Estilos visuales dark mode
+│   │       └── images/
+│   │           ├── kawasaki_ninja_zx10r.jpg  # Fotografía técnica de la moto
+│   │           └── logo_taller.png           # Logo predeterminado del taller</pre>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">2. CÓMO AGREGAR NUEVOS REPUESTOS Y PIEZAS AL CATÁLOGO</h2>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">A. Vía Script SQL (<code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">schema_postgresql.sql</code> / <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">schema_sqlite.sql</code>)</h3>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Para insertar repuestos de manera masiva, ejecute una sentencia <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">INSERT</code>:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">INSERT INTO repuesto (
+    codigo, referencia_oem, nombre, descripcion, zona_id, subparte,
+    marca_moto, cilindraje, modelo_compatible, precio_costo, precio_venta,
+    stock_actual, stock_minimo, proveedor_id
+) VALUES (
+    &#039;MOT-YAM-045&#039;, 
+    &#039;54P-E1631-00&#039;, 
+    &#039;Pistón Completo Estándar 50.0mm con Anillos y Pasador&#039;, 
+    &#039;Pistón forjado de alta resistencia para motor Blue Core enfriado por aire.&#039;, 
+    &#039;motor&#039;, 
+    &#039;Pistón y Cilindro&#039;, 
+    &#039;Yamaha&#039;, 
+    &#039;125cc&#039;, 
+    &#039;Yamaha Crypton 115 / YBR 125&#039;, 
+    48000.00, 
+    78000.00, 
+    14, 
+    4, 
+    1
+);</pre>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">B. Vía Modelo de Dominio Java (<code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">Repuesto.java</code>)</h3>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Si crea repuestos programáticamente en tiempo de ejecución:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">Repuesto nuevoRepuesto = new Repuesto();
+nuevoRepuesto.setCodigo(&quot;SUS-BAJ-012&quot;);
+nuevoRepuesto.setReferenciaOem(&quot;JL-1210-04&quot;);
+nuevoRepuesto.setNombre(&quot;Retenedores de Suspensión Delantera 37mm&quot;);
+nuevoRepuesto.setZonaId(&quot;frenos_suspension&quot;);
+nuevoRepuesto.setSubparte(&quot;Horquilla Telescópica y Suspensión&quot;);
+nuevoRepuesto.setMarcaMoto(&quot;Bajaj&quot;);
+nuevoRepuesto.setCilindraje(&quot;200cc&quot;);
+nuevoRepuesto.setModeloCompatible(&quot;Pulsar NS200 / RS200 FI&quot;);
+nuevoRepuesto.setPrecioCosto(18000.0);
+nuevoRepuesto.setPrecioVenta(32000.0);
+nuevoRepuesto.setStockActual(20);
+nuevoRepuesto.setStockMinimo(6);
+
+RepuestoDAO repuestoDAO = new RepuestoDAOImpl();
+repuestoDAO.guardar(nuevoRepuesto);</pre>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">3. CÓMO INCORPORAR NUEVAS MARCAS, MODELOS Y CILINDRAJES</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">En <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">MainViewController.java</code>, los filtros de marca y cilindraje se inicializan mediante listas observables de JavaFX:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">// Para añadir nuevas marcas (ej. Benelli, Hero, BMW):
+ObservableList&lt;String&gt; marcas = FXCollections.observableArrayList(
+    &quot;Todas&quot;, &quot;Kawasaki&quot;, &quot;Yamaha&quot;, &quot;Suzuki&quot;, &quot;Bajaj&quot;, &quot;AKT&quot;, &quot;Honda&quot;, &quot;KTM&quot;, &quot;Benelli&quot;, &quot;Hero&quot;, &quot;BMW&quot;, &quot;Universal&quot;
+);
+comboMarcas.setItems(marcas);
+
+// Para añadir nuevos cilindrajes (ej. 750cc, 800cc, 1200cc):
+ObservableList&lt;String&gt; cilindrajes = FXCollections.observableArrayList(
+    &quot;Todos&quot;, &quot;1000cc&quot;, &quot;800cc&quot;, &quot;650cc&quot;, &quot;400cc&quot;, &quot;390cc&quot;, &quot;321cc&quot;, &quot;250cc&quot;, &quot;200cc&quot;, &quot;150cc&quot;, &quot;125cc&quot;, &quot;100cc&quot;, &quot;Universal&quot;
+);
+comboCilindrajes.setItems(cilindrajes);</pre>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">4. CÓMO AGREGAR O MODIFICAR PUNTOS INTERACTIVOS (HOTSPOTS) EN LA MOTO</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Los puntos interactivos del diagrama se definen como coordenadas relativas porcentuales (0% a 100%) sobre la imagen en <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">MotorcycleExplorerController.java</code>:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">public class HotspotDef {
+    private String id;
+    private String label;
+    private String zonaId;
+    private String subparteFiltro;
+    private double targetX; // Coordenada X del componente (0 a 100)
+    private double targetY; // Coordenada Y del componente (0 a 100)
+    private String hitPolygon; // Coordenadas poligonales SVG para clics directos
+    
+    // Constructor, getters y setters...
+}
+
+// Ejemplo: Añadir un nuevo punto para el &quot;Farola LED Delantera&quot;:
+hotspots.add(new HotspotDef(
+    &quot;farola_delantera&quot;,
+    &quot;Farola Dual LED&quot;,
+    &quot;electrico&quot;,
+    &quot;Luces LED, Farola y Direccionales&quot;,
+    84.0, 36.0,
+    &quot;78,32 90,32 92,42 80,44&quot;
+));</pre>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">5. CÓMO CREAR UN NUEVO DAO O AGREGAR CONSULTAS SQL</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Para mantener el principio de desacoplamiento, cree primero la interfaz en <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">com.mototaller.dao</code> y luego su implementación en <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">com.mototaller.dao.impl</code>:</p>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Paso 1: Interfaz <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">RepuestoDAO.java</code></h3>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">public interface RepuestoDAO {
+    List&lt;Repuesto&gt; listarTodos() throws SQLException;
+    List&lt;Repuesto&gt; buscarPorZonaYFiltros(String zonaId, String marca, String cilindraje) throws SQLException;
+    Repuesto buscarPorCodigo(String codigo) throws SQLException;
+    void actualizarStock(int id, int nuevoStock) throws SQLException;
+}</pre>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Paso 2: Implementación con PreparedStatement y HikariCP <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">RepuestoDAOImpl.java</code></h3>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">public class RepuestoDAOImpl implements RepuestoDAO {
+    @Override
+    public List&lt;Repuesto&gt; buscarPorZonaYFiltros(String zonaId, String marca, String cilindraje) throws SQLException {
+        List&lt;Repuesto&gt; lista = new ArrayList&lt;&gt;();
+        StringBuilder sql = new StringBuilder(&quot;SELECT * FROM repuesto WHERE zona_id = ?&quot;);
+        
+        if (!&quot;Todas&quot;.equalsIgnoreCase(marca)) {
+            sql.append(&quot; AND marca_moto = ?&quot;);
+        }
+        if (!&quot;Todos&quot;.equalsIgnoreCase(cilindraje)) {
+            sql.append(&quot; AND cilindraje = ?&quot;);
+        }
+
+        try (Connection conn = DatabaseConnection.getInstance().getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql.toString())) {
+            
+            int paramIndex = 1;
+            ps.setString(paramIndex++, zonaId);
+            
+            if (!&quot;Todas&quot;.equalsIgnoreCase(marca)) {
+                ps.setString(paramIndex++, marca);
+            }
+            if (!&quot;Todos&quot;.equalsIgnoreCase(cilindraje)) {
+                ps.setString(paramIndex++, cilindraje);
+            }
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    lista.add(mapearRepuesto(rs));
+                }
+            }
+        }
+        return lista;
+    }
+}</pre>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">6. CÓMO MODIFICAR LAS VISTAS FXML Y ESTILOS CSS</h2>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Las vistas FXML (<code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">src/main/resources/fxml/MainView.fxml</code>) pueden abrirse y editarse visualmente usando <strong>Scene Builder</strong> o directamente en el editor de código de Visual Studio Code.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Todos los componentes tienen identificadores <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">fx:id</code> vinculados con <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">@FXML</code> en el controlador:</li>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">  &lt;TableView fx:id=&quot;tablaRepuestos&quot; styleClass=&quot;dark-table&quot;&gt;
+      &lt;columns&gt;
+          &lt;TableColumn fx:id=&quot;colCodigo&quot; text=&quot;Código&quot; prefWidth=&quot;110&quot;/&gt;
+          &lt;TableColumn fx:id=&quot;colNombre&quot; text=&quot;Repuesto&quot; prefWidth=&quot;250&quot;/&gt;
+          &lt;TableColumn fx:id=&quot;colStock&quot; text=&quot;Stock&quot; prefWidth=&quot;70&quot;/&gt;
+          &lt;TableColumn fx:id=&quot;colPrecio&quot; text=&quot;Precio Venta&quot; prefWidth=&quot;100&quot;/&gt;
+      &lt;/columns&gt;
+  &lt;/TableView&gt;</pre>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">En <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">dark_theme.css</code>, personalice los colores del taller:</li>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">  /* Fondo general estilo Dashboard Deportivo */
+  .root {
+      -fx-base: #0f172a;
+      -fx-background-color: #020617;
+  }
+  /* Botón de acento ámbar / verde racing */
+  .button-primary {
+      -fx-background-color: #f59e0b;
+      -fx-text-fill: #020617;
+      -fx-font-weight: bold;
+      -fx-background-radius: 8px;
+  }</pre>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">7. CONFIGURACIÓN DE MARCA Y LOGO POR CÓDIGO JAVA</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">La clase <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">com.mototaller.config.AppConfig.java</code> centraliza los datos corporativos:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">package com.mototaller.config;
+
+public class AppConfig {
+    public static String NOMBRE_TALLER = &quot;MOTO RACING PRO SERVICE&quot;;
+    public static String SLOGAN = &quot;Centro Técnico Especializado &amp; Repuestos&quot;;
+    public static String NIT = &quot;900.548.120-4&quot;;
+    public static String RUTA_LOGO = &quot;/images/logo_taller.png&quot;;
+    public static String ADMIN_PASSWORD_HASH = &quot;admin123&quot;;
+    public static double IVA_PORCENTAJE = 0.19; // 19%
+}</pre>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">8. GESTIÓN TRANSACCIONAL CON HIKARICP</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Para ejecutar ventas con descuento de inventario y Kardex atómico:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">Connection conn = null;
+try {
+    conn = DatabaseConnection.getInstance().getConnection();
+    conn.setAutoCommit(false); // INICIO TRANSACCIÓN ACID
+
+    // 1. Insertar Factura
+    // 2. Insertar Detalles
+    // 3. Descontar Stock:
+    //    UPDATE repuesto SET stock_actual = stock_actual - ? WHERE id = ?
+    // 4. Insertar Kardex:
+    //    INSERT INTO kardex_movimiento ...
+
+    conn.commit(); // ÉXITO: Se confirman todos los cambios juntos
+} catch (SQLException ex) {
+    if (conn != null) {
+        conn.rollback(); // ERROR: Se deshacen todos los cambios, no hay inconsistencias
+    }
+    throw ex;
+} finally {
+    if (conn != null) {
+        conn.setAutoCommit(true);
+        conn.close(); // Devuelve la conexión al pool HikariCP
+    }
+}</pre>
+
+
+  <div class="footer-note">
+    <p>MotoGestión FX - Sistema Integral para Taller de Motocicletas | Generado oficialmente en formato Word / Imprimible PDF</p>
+  </div>
+</div>
+</body>
+</html>

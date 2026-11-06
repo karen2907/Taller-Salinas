@@ -1,0 +1,6 @@
+{
+  "name": "MotoGestión FX - Sistema de Taller, Inventario y Cotizaciones",
+  "description": "Arquitectura y suite para taller de motocicletas en Java 17 / JavaFX 21 con explorador multimedia interactivo, control de inventario en tiempo real, Kardex, gestión de proveedores y generador de cotizaciones y facturas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

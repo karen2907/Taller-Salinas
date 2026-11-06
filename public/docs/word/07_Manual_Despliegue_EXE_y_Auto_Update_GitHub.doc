@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office" 
+      xmlns:w="urn:schemas-microsoft-com:office:word" 
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+  <meta charset="utf-8">
+  <title>Manual de Despliegue .EXE, CI/CD y Auto-Update vía GitHub Releases</title>
+  <!--[if gte mso 9]>
+  <xml>
+    <w:WordDocument>
+      <w:View>Print</w:View>
+      <w:Zoom>100</w:Zoom>
+      <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+  </xml>
+  <![endif]-->
+  <style>
+    @page Section1 {
+      size: 8.5in 11.0in;
+      margin: 1.0in 1.0in 1.0in 1.0in;
+      mso-header-margin: 0.5in;
+      mso-footer-margin: 0.5in;
+      mso-paper-source: 0;
+    }
+    div.Section1 {
+      page: Section1;
+    }
+    body {
+      font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.5;
+      color: #1e293b;
+      background-color: #ffffff;
+      margin: 0;
+      padding: 0;
+    }
+    h1 {
+      font-size: 20pt;
+      color: #0f172a;
+      border-bottom: 2pt solid #4f46e5;
+      padding-bottom: 6pt;
+      margin-top: 18pt;
+      margin-bottom: 10pt;
+      page-break-after: avoid;
+    }
+    h2 {
+      font-size: 14pt;
+      color: #312e81;
+      border-bottom: 1pt solid #cbd5e1;
+      padding-bottom: 4pt;
+      margin-top: 16pt;
+      margin-bottom: 8pt;
+      page-break-after: avoid;
+    }
+    h3 {
+      font-size: 12pt;
+      color: #1e1b4b;
+      margin-top: 12pt;
+      margin-bottom: 6pt;
+      page-break-after: avoid;
+    }
+    p {
+      margin: 0 0 8pt 0;
+      text-align: justify;
+    }
+    pre {
+      background-color: #0f172a;
+      color: #38bdf8;
+      padding: 10pt 12pt;
+      border-radius: 4pt;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 9.5pt;
+      line-height: 1.4;
+      border: 1pt solid #1e293b;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      page-break-inside: avoid;
+      margin: 10pt 0;
+    }
+    code {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 9.5pt;
+      background-color: #f1f5f9;
+      color: #0f172a;
+      padding: 1.5pt 4pt;
+      border-radius: 3pt;
+      border: 1pt solid #e2e8f0;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 12pt 0;
+      font-size: 10pt;
+    }
+    th {
+      background-color: #1e1b4b;
+      color: #ffffff;
+      font-weight: bold;
+      padding: 8pt 10pt;
+      text-align: left;
+      border: 1pt solid #cbd5e1;
+    }
+    td {
+      padding: 7pt 10pt;
+      border: 1pt solid #cbd5e1;
+      color: #1e293b;
+    }
+    tr:nth-child(even) td {
+      background-color: #f8fafc;
+    }
+    ul, ol {
+      margin: 0 0 10pt 0;
+      padding-left: 20pt;
+    }
+    li {
+      margin-bottom: 4pt;
+    }
+    .header-box {
+      background-color: #f8fafc;
+      border: 1.5pt solid #4f46e5;
+      border-radius: 6pt;
+      padding: 14pt 16pt;
+      margin-bottom: 18pt;
+    }
+    .header-title {
+      font-size: 18pt;
+      font-weight: bold;
+      color: #1e1b4b;
+      margin: 0 0 4pt 0;
+    }
+    .header-sub {
+      font-size: 12pt;
+      color: #4f46e5;
+      font-weight: 600;
+      margin: 0 0 10pt 0;
+    }
+    .meta-table {
+      width: 100%;
+      border: none;
+      margin: 0;
+    }
+    .meta-table td {
+      border: none;
+      padding: 2pt 4pt;
+      font-size: 9.5pt;
+      color: #475569;
+      background: transparent !important;
+    }
+  </style>
+</head>
+<body>
+<div class="Section1">
+
+  <div class="header-box">
+    <div class="header-title">MANUAL DE DESPLIEGUE .EXE, CI/CD Y AUTO-UPDATE VÍA GITHUB RELEASES</div>
+    <div class="header-sub">SISTEMA MOTOGESTIÓN FX - ARQUITECTURA DE DISTRIBUCIÓN Y ACTUALIZACIÓN EN CALIENTE</div>
+    <table class="meta-table">
+      <tr>
+        <td><strong>Documento:</strong> 07_MANUAL_DESPLIEGUE_EXE_Y_AUTO_UPDATE_GITHUB.doc</td>
+        <td><strong>Versión:</strong> 2.4.0-PRO</td>
+      </tr>
+      <tr>
+        <td><strong>Fecha de Emisión:</strong> Octubre 2026</td>
+        <td><strong>Destinatario:</strong> Sustentación Académica Docente & Desarrolladores</td>
+      </tr>
+      <tr>
+        <td><strong>Tecnologías:</strong> GitHub Actions CI/CD, GitHub Releases API, electron-updater, Update4j</td>
+        <td><strong>Seguridad:</strong> Hash Criptográfico SHA-512 & Preservación de BD</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2>1. PLANTEAMIENTO DEL PROBLEMA: ¿POR QUÉ NO BASTA CON SUBIR A GITHUB?</h2>
+  <p>
+    Cuando se desarrolla un sistema para un negocio real (como un taller mecánico con computadoras en mostrador, bahías de servicio y caja), existen dos realidades distintas:
+  </p>
+  <ul>
+    <li><strong>La computadora del Programador (Entorno de Desarrollo):</strong> Tiene instalado Git, Node.js, JDK de Java, Maven, VS Code o IntelliJ. Modifica el código, prueba localmente y hace <code>git push</code> a GitHub.</li>
+    <li><strong>Las computadoras del Taller (Entorno de Producción / Usuario Final):</strong> Son operadas por cajeros, recepcionistas y mecánicos. <strong>No tienen ni deben tener instalado Git ni entornos de compilación.</strong> El usuario espera hacer doble clic en un icono en su escritorio de Windows (<code>MotoGestion.exe</code>) y trabajar sin preocuparse de comandos.</li>
+  </ul>
+  <p>
+    <strong>El reto de las Actualizaciones:</strong> Si el programador corrige un error o agrega 50 repuestos nuevos en GitHub, el método anticuado consistía en ir con una memoria USB a cada computador del taller a reinstalar. El método profesional de ingeniería de software (Auto-Update) permite que el ejecutable instalado en cada PC consulte periódicamente a GitHub Releases y <strong>se actualice solo en segundo plano</strong>.
+  </p>
+
+  <h2>2. ARQUITECTURA DE DISTRIBUCIÓN DE SOFTWARE DE ESCRITORIO</h2>
+  <pre>
+[ REPOSITORIO GITHUB ] 
+       │ (git push origin main / git tag v1.2.0)
+       ▼
+[ GITHUB ACTIONS (CI/CD) ]  <-- Compilador automático en la nube de GitHub
+       │ Genera: MotoGestion-Setup-1.2.0.exe + latest.yml (Hash SHA-512)
+       ▼
+[ GITHUB RELEASES ]         <-- Servidor de distribución seguro y gratuito
+       │
+       ├─────────────────────────────────┬─────────────────────────────────┐
+       ▼                                 ▼                                 ▼
+[ PC 1: CAJA ]                   [ PC 2: TALLER ]                  [ PC 3: RECEPCIÓN ]
+(Consulta /releases/latest)       (Consulta /releases/latest)       (Consulta /releases/latest)
+Detecta v1.2.0 > v1.0.0           Detecta v1.2.0 > v1.0.0           Detecta v1.2.0 > v1.0.0
+Descarga e instala en silencio    Descarga e instala en silencio    Descarga e instala en silencio
+  </pre>
+
+  <h2>3. EL CICLO DE AUTO-ACTUALIZACIÓN AUTOMÁTICA (AUTO-UPDATER)</h2>
+  <ol>
+    <li><strong>Disparo:</strong> Al abrir el programa o cada 4 horas en segundo plano, la app llama a <code>autoUpdater.checkForUpdates()</code>.</li>
+    <li><strong>Consulta API:</strong> La app realiza una petición GET a <code>https://api.github.com/repos/usuario/motogestion-fx/releases/latest</code>.</li>
+    <li><strong>Comparación Semántica (SemVer):</strong> Si la versión remota (ej. <code>1.1.0</code>) es mayor que la local (<code>1.0.0</code>), activa el evento de descarga.</li>
+    <li><strong>Descarga en Segundo Plano:</strong> Descarga el archivo instalador sin interrumpir las ventas ni el trabajo del taller.</li>
+    <li><strong>Verificación SHA-512:</strong> Comprueba la suma criptográfica contra el manifest <code>latest.yml</code> para impedir corrupción o hackeos.</li>
+    <li><strong>Reinicio Atómico:</strong> Al reiniciar o pulsar "Actualizar Ahora", reemplaza los binarios del programa. <strong>La base de datos, ventas, clientes y configuraciones del taller NUNCA se borran</strong>.</li>
+  </ol>
+
+  <h2>4. CONFIGURACIÓN DE GITHUB ACTIONS (CI/CD)</h2>
+  <p>Archivo: <code>.github/workflows/build-and-release.yml</code></p>
+  <pre>
+name: Compilar y Publicar MotoGestión FX en Windows
+
+on:
+  push:
+    tags:
+      - 'v*' # Se ejecuta al hacer git push con etiquetas v1.0.1, v1.1.0, etc.
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: 1. Descargar Código Fuente
+        uses: actions/checkout@v4
+
+      - name: 2. Configurar Node.js 20 LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: 3. Instalar Dependencias
+        run: npm ci
+
+      - name: 4. Compilar Frontend
+        run: npm run build
+
+      - name: 5. Compilar Instalador .EXE y Publicar en GitHub Releases
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx electron-builder --win --publish always
+  </pre>
+
+  <h2>5. CÓDIGO DEL AUTO-UPDATER EN WINDOWS (electron/main.js)</h2>
+  <pre>
+const { app, BrowserWindow, ipcMain } = require('electron');
+const { autoUpdater } = require('electron-updater');
+
+autoUpdater.autoDownload = true;
+autoUpdater.autoInstallOnAppQuit = true;
+
+// Al iniciar la app en producción
+app.whenReady().then(() => {
+  createWindow();
+  if (app.isPackaged) {
+    autoUpdater.checkForUpdatesAndNotify();
+  }
+});
+
+// Evento cuando la actualización se descargó
+autoUpdater.on('update-downloaded', (info) => {
+  mainWindow.webContents.send('updater-event', { status: 'downloaded', version: info.version });
+});
+
+// Orden de instalación
+ipcMain.on('aplicar-actualizacion', () => {
+  autoUpdater.quitAndInstall();
+});
+  </pre>
+
+  <h2>6. DEMOSTRACIÓN PRÁCTICA ANTE EL PROFESOR</h2>
+  <p>Para sustentar el funcionamiento del sistema ante el docente:</p>
+  <ol>
+    <li>Mostrar que la aplicación inicia en versión <strong>v1.0.0</strong>.</li>
+    <li>Abrir el <strong>Centro de Despliegue .EXE & Auto-Updater</strong> (icono de cohete en la cabecera).</li>
+    <li>Presionar el botón <strong>"Simular 'git push' y Publicar en GitHub Releases (v1.1.0)"</strong>.</li>
+    <li>Observar cómo el cliente detecta la nueva versión, muestra la barra de descarga con velocidad real, valida el hash SHA-512 y habilita el botón verde <strong>"Reiniciar e Instalar Ahora"</strong>.</li>
+    <li>Al presionar reiniciar, la aplicación se actualiza en vivo a la versión <strong>v1.1.0</strong> manteniendo el inventario y las ventas registradas intactas.</li>
+  </ol>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office" 
+      xmlns:w="urn:schemas-microsoft-com:office:word" 
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+  <meta charset="utf-8">
+  <title>Documento General del Proyecto: MotoGestión FX</title>
+  <!--[if gte mso 9]>
+  <xml>
+    <w:WordDocument>
+      <w:View>Print</w:View>
+      <w:Zoom>100</w:Zoom>
+      <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+  </xml>
+  <![endif]-->
+  <style>
+    @page Section1 {
+      size: 8.5in 11.0in;
+      margin: 1.0in 1.0in 1.0in 1.0in;
+      mso-header-margin: 0.5in;
+      mso-footer-margin: 0.5in;
+      mso-paper-source: 0;
+    }
+    div.Section1 {
+      page: Section1;
+    }
+    body {
+      font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.6;
+      color: #1e293b;
+      background-color: #ffffff;
+    }
+    .header-banner {
+      background-color: #0f172a;
+      color: #ffffff;
+      padding: 18pt 24pt;
+      border-radius: 6pt;
+      margin-bottom: 24pt;
+      border-bottom: 4pt solid #0284c7;
+    }
+    .header-badge {
+      display: inline-block;
+      background-color: #0284c7;
+      color: #ffffff;
+      font-size: 9pt;
+      font-weight: bold;
+      padding: 3pt 8pt;
+      border-radius: 3pt;
+      text-transform: uppercase;
+      letter-spacing: 1pt;
+      margin-bottom: 8pt;
+    }
+    .footer-note {
+      margin-top: 36pt;
+      padding-top: 12pt;
+      border-top: 1pt solid #cbd5e1;
+      font-size: 9pt;
+      color: #64748b;
+      text-align: center;
+    }
+    @media print {
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .header-banner {
+        background-color: #0f172a !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      table tr th {
+        background-color: #0f172a !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="Section1">
+  <div class="header-banner">
+    <div class="header-badge">ARQUITECTURA & ESPECIFICACIONES</div>
+    <h1 style="color: #ffffff; margin: 0; font-size: 24pt; font-weight: bold; border: none; padding: 0;">Documento General del Proyecto: MotoGestión FX</h1>
+    <p style="color: #94a3b8; font-size: 12pt; margin: 6pt 0 0 0;">Arquitectura Integral, Módulos Desarrollados y Especificaciones Técnicas</p>
+    <div style="margin-top: 12pt; font-size: 9.5pt; color: #cbd5e1; border-top: 1pt solid #334155; padding-top: 8pt;">
+      <span><strong>Sistema:</strong> MotoGestión FX v2.4.0-PRO</span> &nbsp;|&nbsp;
+      <span><strong>Fecha:</strong> Octubre 2026</span> &nbsp;|&nbsp;
+      <span><strong>Documento Oficial de Entrega</strong></span>
+    </div>
+  </div>
+
+  <h1 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 22pt; font-weight: bold; border-bottom: 2pt solid #0284c7; padding-bottom: 6pt; margin-top: 24pt; margin-bottom: 10pt;">DOCUMENTO MAESTRO DEL PROYECTO: MOTOGESTIÓN FX</h1>
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">Sistema Integral de Inventarios, Cotizaciones y Exploración Visual Multimedial para Taller de Motocicletas</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Versión:</strong> 2.4.0-PRO</p>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Arquitectura:</strong> Java 17+ / JavaFX 21 (MVC + DAO) | Soporte Multi-Equipo LAN & Nube</p>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Fecha:</strong> Octubre 2026</p>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Autor:</strong> Equipo de Arquitectura de Software MotoGestión FX</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">TABLA DE CONTENIDO</h3>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Resumen Ejecutivo y Alcance</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Pila Tecnológica y Especificaciones Técnicas</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Arquitectura del Software (Patrón MVC + DAO + HikariCP)</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> Módulos Funcionales Desarrollados</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>5.</strong> Modelo de Datos Relacional y Esquema SQL</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>6.</strong> Control de Concurrencia y Red Local (LAN)</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>7.</strong> Seguridad y Control de Administrador</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>8.</strong> Estado Actual de Entrega y Madurez</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">1. RESUMEN EJECUTIVO Y ALCANCE</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>MotoGestión FX</strong> es un sistema de software de escritorio de alta fidelidad diseñado específicamente para modernizar las operaciones comerciales, técnicas y logísticas de talleres de motocicletas.</p>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">A diferencia de los sistemas contables genéricos, MotoGestión FX introduce un <strong>Módulo de Trabajo Interactivo Multimedial</strong> basado en el esquema visual en alta definición de una motocicleta deportiva de alto rendimiento (Kawasaki Ninja ZX-10RR) y componentes para todas las marcas comerciales del mercado (Yamaha, Suzuki, Kawasaki, Bajaj, Honda, AKT, KTM).</p>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">El sistema soluciona tres cuellos de botella críticos en los talleres de motos:</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> <strong>Dificultad para identificar repuestos compatibles:</strong> El mecánico u operario puede hacer clic directamente en la foto de la moto (ej. motor, suspensión, frenos, carenado, mandos) y el sistema despliega al instante el catálogo compatible con especificaciones de cilindraje (100cc a 1000cc), códigos OEM y stock físico.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> <strong>Desconexión entre mostrador y bodega:</strong> El carrito de cotizaciones/ventas es persistente entre todas las vistas de la aplicación. Se pueden cotizar trabajos sin bloquear el inventario o facturar descontando stock en tiempo real con transaccionalidad ACID.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> <strong>Falta de trazabilidad en redes locales:</strong> El sistema está preparado para funcionar en red local (LAN) con múltiples terminales (Recepción, Mecánicos, Bodega, Caja) conectadas a un servidor de base de datos único (PostgreSQL o SQLite).</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">2. PILA TECNOLÓGICA Y ESPECIFICACIONES TÉCNICAS</h2>
+<table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse; width: 100%; margin: 14pt 0; font-size: 10pt; border-color: #cbd5e1;">
+  <tr style="background-color: #0f172a; color: #ffffff;">
+    <th style="padding: 8pt 10pt; text-align: left; font-weight: bold; border: 1pt solid #cbd5e1; color: #ffffff;">Componente</th>
+    <th style="padding: 8pt 10pt; text-align: left; font-weight: bold; border: 1pt solid #cbd5e1; color: #ffffff;">Tecnología Seleccionada</th>
+    <th style="padding: 8pt 10pt; text-align: left; font-weight: bold; border: 1pt solid #cbd5e1; color: #ffffff;">Justificación Técnica</th>
+  </tr>
+  <tr style="background-color: #ffffff;">
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;"><strong>Lenguaje Base</strong></td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">Java 17 LTS / Java 21 LTS</td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">Tipado estático robusto, concurrencia avanzada, compatibilidad a largo plazo y multiplataforma.</td>
+  </tr>
+  <tr style="background-color: #f8fafc;">
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;"><strong>Interfaz Gráfica (GUI)</strong></td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">JavaFX 21 + FXML</td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">Renderizado acelerado por hardware (DirectX/OpenGL/Metal), enlaces de datos bidireccionales (<code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">ObservableList</code>), layouts desacoplados FXML y hojas de estilo CSS.</td>
+  </tr>
+  <tr style="background-color: #ffffff;">
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;"><strong>Gestor de Dependencias</strong></td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">Apache Maven 3.9+</td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">Estandarización de compilación, gestión de dependencias y generación de paquetes ejecutables.</td>
+  </tr>
+  <tr style="background-color: #f8fafc;">
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;"><strong>Patrón Arquitectónico</strong></td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">MVC (Model-View-Controller) + DAO (Data Access Object)</td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">Separación estricta de responsabilidades entre GUI, lógica de negocio y persistencia de datos.</td>
+  </tr>
+  <tr style="background-color: #ffffff;">
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;"><strong>Acceso a Datos</strong></td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">JDBC Nativo + PreparedStatement</td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">Máximo rendimiento sin sobrecargas de ORM pesados; protección total contra SQL Injection.</td>
+  </tr>
+  <tr style="background-color: #f8fafc;">
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;"><strong>Pool de Conexiones</strong></td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">HikariCP 5.1.0</td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">El pool JDBC más rápido del ecosistema Java, con reconexión automática en caídas de red LAN.</td>
+  </tr>
+  <tr style="background-color: #ffffff;">
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;"><strong>Base de Datos Local</strong></td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">SQLite JDBC (<code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">mototaller.db</code>)</td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">Portabilidad inmediata sin requerir la instalación de un servidor SQL en pruebas iniciales o talleres monousuario.</td>
+  </tr>
+  <tr style="background-color: #f8fafc;">
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;"><strong>Base de Datos LAN / Nube</strong></td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">PostgreSQL 14+ / Neon.tech / Supabase</td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">Integridad referencial fuerte, transacciones ACID para Kardex, soporte para múltiples terminales en simultáneo y nubes gratuitas serverless.</td>
+  </tr>
+</table>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">3. ARQUITECTURA DEL SOFTWARE (PATRÓN MVC + DAO)</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">El código fuente del sistema se estructura en capas independientes:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">src/main/java/com/mototaller/
+├── config/                  # Configuración global y lectura de database.properties
+│   ├── AppConfig.java
+│   └── DatabaseConnection.java (Singleton + HikariCP Pool)
+├── model/                   # Capa de Modelo (Entidades y POJOs con propiedades observables)
+│   ├── Repuesto.java
+│   ├── Proveedor.java
+│   ├── MovimientoKardex.java
+│   ├── FacturaVenta.java
+│   ├── ItemCarrito.java
+│   ├── Cotizacion.java
+│   └── TerminalLAN.java
+├── dao/                     # Capa de Acceso a Datos (Interfaces y Contratos)
+│   ├── RepuestoDAO.java
+│   ├── KardexDAO.java
+│   ├── VentaDAO.java
+│   └── ProveedorDAO.java
+├── dao/impl/                # Implementaciones JDBC de los DAOs
+│   ├── RepuestoDAOImpl.java
+│   ├── KardexDAOImpl.java
+│   ├── VentaDAOImpl.java
+│   └── ProveedorDAOImpl.java
+├── controller/              # Capa de Controladores JavaFX
+│   ├── MainViewController.java
+│   ├── MotorcycleExplorerController.java
+│   ├── InventoryController.java
+│   ├── KardexController.java
+│   ├── AdminController.java
+│   └── CartSidebarController.java
+└── MainApp.java             # Entry point del ciclo de vida JavaFX (start, init, stop)</pre>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">4. MÓDULOS FUNCIONALES DESARROLLADOS</h2>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">4.1. Módulo de Exploración Visual Interactivo (Diagrama Moto HD)</h3>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Visualización de alta definición:</strong> Fotografía de motocicleta deportiva de alta gama con coordenadas de zonas técnicas.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Clickeable directamente en la foto:</strong> 18 polígonos interactivos trazados sobre el carenaje, cúpula, frenos delanteros, calipers Brembo, suspensión invertida Showa, radiador, motor 998cc, embrague anti-rebote, escape Akrapovic, sillín, colín, basculante y cadena.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Filtrado contextual en 2 clics:</strong> Al hacer clic en una parte (ej. Motor -> Pistón), la lista de repuestos filtra automáticamente por esa pieza, permitiendo además refinar por marca (Yamaha, Suzuki, Kawasaki, etc.) y cilindraje (100cc a 1000cc).</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Adición inmediata al carrito:</strong> Selector de cantidad integrado y advertencia de stock máximo disponible.</li>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">4.2. Carrito Persistente y Documentos Comerciales</h3>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Persistencia total:</strong> El panel lateral permanece visible e inmutable mientras el usuario navega entre el Diagrama, Inventario, Kardex o Proveedores.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Generación de Cotizaciones:</strong> Calcula subtotales, IVA parametrizable (ej. 19%) y total sin modificar inventario. Genera proforma con vigencia legal para entrega al cliente.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Facturación POS / Venta Atómica:</strong> Valida stock disponible, descuenta inventario, genera el registro de venta con resolución DIAN/fiscal, e inserta automáticamente la transacción en el Kardex.</li>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">4.3. Inventario y Control de Stock en Tiempo Real</h3>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Monitoreo de Stock Mínimo:</strong> Alertas visuales inmediatas cuando un repuesto alcanza o baja de su umbral de seguridad.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Filtros avanzados:</strong> Búsqueda en vivo por código SKU, referencia OEM de fabricante, nombre, zona técnica, marca de moto y cilindraje.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Gestión de Precios:</strong> Margen de rentabilidad calculado en base al costo unitario y precio de venta al público.</li>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">4.4. Control de Inventario / Kardex de Movimientos</h3>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Auditoría inmutable:</strong> Asientos contables automáticos por:</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">ENTRADA</code> (Recepción de pedidos de proveedores).</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">VENTA</code> (Facturación directa desde el carrito).</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">DEVOLUCION_PROVEEDOR</code> (Repuestos con defectos de fábrica).</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">AJUSTE_INVENTARIO</code> (Corrección por inventario físico o pérdidas).</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Trazabilidad de puestos:</strong> Cada movimiento almacena la fecha/hora exacta, saldo anterior, cantidad, saldo posterior, documento de referencia y nombre/IP de la terminal responsable.</li>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">4.5. Proveedores y Órdenes de Entrada / Devolución</h3>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Ficha de Proveedores:</strong> NIT, Razón Social, Teléfono, Correo, Dirección y Ciudad.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Órdenes de Entrada:</strong> Recepción de mercancía que suma al stock existente y actualiza el costo ponderado.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Gestión de Devoluciones:</strong> Proceso formal para devolver piezas defectuosas a proveedores con motivo documentado y ajuste automático del Kardex.</li>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">4.6. Módulo de Administrador con Contraseña</h3>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Seguridad por PIN / Clave Maestra:</strong> Protege contra modificaciones no autorizadas por parte de operadores o mecánicos.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Identidad Corporativa:</strong> Nombre de la empresa, slogan, NIT, teléfonos, dirección y carga interactiva del Logo del Taller (visible en cabecera y facturas).</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Parámetros del Sistema:</strong> Configuración de IVA, prefijos de facturación y cotización, vigencia, términos legales y alertas de stock.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Gestión de Terminales LAN:</strong> Registro de IPs y nombres de estaciones de trabajo del taller.</li>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">5. MODELO DE DATOS RELACIONAL Y ESQUEMA SQL</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">El sistema cuenta con un esquema normalizado en 3ra Forma Normal (3NF) compuesto por las siguientes tablas principales:</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">configuracion_taller</code>: Parámetros globales, rutas de logo y PIN de administrador.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">proveedor</code>: Proveedores y distribuidores de repuestos.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">zona_moto</code>: Zonas anatómicas de la motocicleta.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">repuesto</code>: Maestro de repuestos con SKU, OEM, compatibilidades, precios y stock.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>5.</strong> <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">kardex_movimiento</code>: Libro mayor de movimientos de inventario.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>6.</strong> <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">factura_venta</code> y <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">detalle_factura_venta</code>: Encabezado y líneas de venta POS.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>7.</strong> <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">cotizacion</code> y <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">detalle_cotizacion</code>: Cotizaciones y proformas comerciales.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>8.</strong> <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">orden_compra</code> y <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">detalle_orden_compra</code>: Pedidos a distribuidores.</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">6. CONTROL DE CONCURRENCIA Y RED LOCAL (LAN)</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Para permitir que múltiples mecánicos y cajeros trabajen simultáneamente:</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> <strong>Transacciones ACID:</strong> Las ventas usan <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">conn.setAutoCommit(false)</code>, ejecutando la factura, detalles, descuento de stock y asiento en Kardex en un bloque atómico. Si la red falla, se aplica <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">conn.rollback()</code>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> <strong>Nivel de Aislamiento:</strong> <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">TRANSACTION_READ_COMMITTED</code> para evitar lecturas sucias de stock.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> <strong>Pool HikariCP:</strong> Mantiene conexiones calientes preabiertas reduciendo la latencia de red a menos de 2 milisegundos por consulta en la LAN.</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">7. ESTADO ACTUAL DE ENTREGA</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">El proyecto cuenta con:</p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Código fuente Java completo (Modelos, DAOs, Controladores, Vistas FXML y Singleton JDBC).</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Scripts SQL compatibles con PostgreSQL y SQLite.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Entorno interactivo para pruebas en tiempo real con simulación multiequipo.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Módulo de Administrador autenticado por contraseña.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Catálogo maestro de repuestos para motos deportivas, calle y trabajo de todas las marcas y cilindrajes.</li>
+
+
+  <div class="footer-note">
+    <p>MotoGestión FX - Sistema Integral para Taller de Motocicletas | Generado oficialmente en formato Word / Imprimible PDF</p>
+  </div>
+</div>
+</body>
+</html>

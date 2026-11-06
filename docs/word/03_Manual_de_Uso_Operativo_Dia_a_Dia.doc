@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office" 
+      xmlns:w="urn:schemas-microsoft-com:office:word" 
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+  <meta charset="utf-8">
+  <title>Manual de Uso Operativo (Día a Día)</title>
+  <!--[if gte mso 9]>
+  <xml>
+    <w:WordDocument>
+      <w:View>Print</w:View>
+      <w:Zoom>100</w:Zoom>
+      <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+  </xml>
+  <![endif]-->
+  <style>
+    @page Section1 {
+      size: 8.5in 11.0in;
+      margin: 1.0in 1.0in 1.0in 1.0in;
+      mso-header-margin: 0.5in;
+      mso-footer-margin: 0.5in;
+      mso-paper-source: 0;
+    }
+    div.Section1 {
+      page: Section1;
+    }
+    body {
+      font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.6;
+      color: #1e293b;
+      background-color: #ffffff;
+    }
+    .header-banner {
+      background-color: #0f172a;
+      color: #ffffff;
+      padding: 18pt 24pt;
+      border-radius: 6pt;
+      margin-bottom: 24pt;
+      border-bottom: 4pt solid #0284c7;
+    }
+    .header-badge {
+      display: inline-block;
+      background-color: #0284c7;
+      color: #ffffff;
+      font-size: 9pt;
+      font-weight: bold;
+      padding: 3pt 8pt;
+      border-radius: 3pt;
+      text-transform: uppercase;
+      letter-spacing: 1pt;
+      margin-bottom: 8pt;
+    }
+    .footer-note {
+      margin-top: 36pt;
+      padding-top: 12pt;
+      border-top: 1pt solid #cbd5e1;
+      font-size: 9pt;
+      color: #64748b;
+      text-align: center;
+    }
+    @media print {
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .header-banner {
+        background-color: #0f172a !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      table tr th {
+        background-color: #0f172a !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="Section1">
+  <div class="header-banner">
+    <div class="header-badge">OPERACIÓN DIARIA</div>
+    <h1 style="color: #ffffff; margin: 0; font-size: 24pt; font-weight: bold; border: none; padding: 0;">Manual de Uso Operativo (Día a Día)</h1>
+    <p style="color: #94a3b8; font-size: 12pt; margin: 6pt 0 0 0;">Procedimientos Estándar Paso a Paso (SOP) para el Taller</p>
+    <div style="margin-top: 12pt; font-size: 9.5pt; color: #cbd5e1; border-top: 1pt solid #334155; padding-top: 8pt;">
+      <span><strong>Sistema:</strong> MotoGestión FX v2.4.0-PRO</span> &nbsp;|&nbsp;
+      <span><strong>Fecha:</strong> Octubre 2026</span> &nbsp;|&nbsp;
+      <span><strong>Documento Oficial de Entrega</strong></span>
+    </div>
+  </div>
+
+  <h1 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 22pt; font-weight: bold; border-bottom: 2pt solid #0284c7; padding-bottom: 6pt; margin-top: 24pt; margin-bottom: 10pt;">MANUAL DE USO OPERATIVO DÍA A DÍA</h1>
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">SISTEMA MOTOGESTIÓN FX - GUÍA DE PROCEDIMIENTOS ESTÁNDAR (SOP)</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Para:</strong> Operación Diaria en Recepción, Bahía de Mecánica, Almacén y Caja</p>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Versión:</strong> 2.4.0</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">TABLA DE CONTENIDO</h3>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Flujo Operativo 1: Recepción de Motocicleta y Creación de Cotización</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Flujo Operativo 2: Identificación Técnica Visual por el Mecánico (Diagrama HD)</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Flujo Operativo 3: Facturación POS y Cierre de Venta</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> Flujo Operativo 4: Recepción de Repuestos por Orden de Entrada</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>5.</strong> Flujo Operativo 5: Devolución de Repuestos con Defecto de Fábrica a Proveedor</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>6.</strong> Flujo Operativo 6: Auditoría de Inventario y Conteo Físico en Kardex</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>7.</strong> Flujo Operativo 7: Cambio y Selección de Terminal de Trabajo</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">1. FLUJO OPERATIVO 1: RECEPCIÓN DE MOTOCICLETA Y COTIZACIÓN</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Objetivo:</strong> Elaborar un presupuesto detallado para un cliente sin alterar el stock del almacén.</p>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Paso a Paso:</h3>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> <strong>Identificar la moto del cliente:</strong> Solicite la marca (ej. Yamaha), modelo (ej. MT-09) y cilindraje (ej. 850cc), junto con la placa.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> <strong>Seleccionar los repuestos necesarios:</strong></p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Ingrese a la pestaña <strong>"Diagrama Moto HD"</strong> o a <strong>"Inventario & Stock"</strong>.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Localice las piezas a cotizar (ej. Kit de arrastre, pastillas de freno Brembo, aceite sintético).</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Especifique la cantidad requerida en cada ítem y presione <strong>"Agregar"</strong>.</li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> <strong>Verificar el Carrito Lateral:</strong></p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">En el panel derecho, confirme que las cantidades y precios unitarios sean correctos.</li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> <strong>Completar los datos del cliente:</strong></p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">En la sección inferior del carrito, ingrese el nombre del cliente, teléfono celular, placa y modelo de la moto.</li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>5.</strong> <strong>Generar la Cotización:</strong></p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Haga clic en el botón azul <strong>"Generar Cotización"</strong>.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Se abrirá la ventana con el documento proforma formal con numeración consecutiva (ej. <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">COT-00104</code>).</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">La proforma detalla subtotales, IVA (19%), total y fecha límite de validez (15 días).</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Imprima el comprobante o comparta el resumen con el cliente.</li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>6.</strong> <strong>Resultado:</strong> La cotización queda registrada sin haber descontado una sola unidad física del inventario.</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">2. FLUJO OPERATIVO 2: IDENTIFICACIÓN TÉCNICA VISUAL POR EL MECÁNICO</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Objetivo:</strong> Permitir que el mecánico en el taller encuentre la referencia exacta de un repuesto desgastado sin tener que buscar códigos manuales.</p>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Paso a Paso:</h3>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> <strong>Abrir el Diagrama Interactivo:</strong></p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Ingrese a la pestaña <strong>"Diagrama Moto HD"</strong>.</li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> <strong>Hacer clic en la zona anatómica averiada:</strong></p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Si la moto tiene un ruido en el motor: haga clic en el bloque del <strong>Motor</strong>.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Si presenta desgaste en la frenada: haga clic en las <strong>Mordazas / Discos de Freno</strong>.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Si requiere suspensión: haga clic en la <strong>Horquilla Invertida</strong> o en el <strong>Monoshock</strong>.</li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> <strong>Explorar las subpartes y marcas compatibles:</strong></p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">El sistema desplegará de inmediato la lista de repuestos correspondientes.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Seleccione la marca de la moto en el selector (ej. Bajaj o Suzuki) y el cilindraje.</li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> <strong>Verificar disponibilidad física:</strong></p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Compruebe la columna <strong>Stock</strong>. Si el número aparece en verde, hay existencia suficiente en bodega.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Si el stock es 0 o está en rojo, solicite la pieza a compras de inmediato.</li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>5.</strong> <strong>Solicitar a Bodega:</strong></p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Presione <strong>"Agregar al Carrito"</strong> para que el almacén prepare los repuestos.</li>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">3. FLUJO OPERATIVO 3: FACTURACIÓN POS Y CIERRE DE VENTA</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Objetivo:</strong> Registrar el pago del cliente, entregar la factura formal y descargar las piezas del inventario físico.</p>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Paso a Paso:</h3>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> <strong>Revisión final de ítems:</strong> Confirme con el cliente o la orden de servicio que todos los repuestos y aceites estén cargados en el carrito lateral.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> <strong>Datos de facturación:</strong></p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Ingrese el Nombre o Razón Social y Cédula/NIT del cliente.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Seleccione el método de pago:</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><em>Efectivo</em></li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><em>Transferencia (Nequi / Daviplata / Bancolombia)</em></li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><em>Tarjeta Débito / Crédito</em></li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><em>Crédito Taller</em></li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> <strong>Presionar "Facturar / Vender":</strong></p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">El sistema ejecuta una <strong>transacción atómica (ACID)</strong> en la base de datos:</li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Descuenta las unidades exactas de cada repuesto en la tabla <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">repuesto</code>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Genera la factura con prefijo fiscal (ej. <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">FV-2026-0089</code>).</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Inserta un asiento de auditoría en el <strong>Kardex</strong> con tipo <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">VENTA</code>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> <strong>Entrega de Comprobante:</strong></p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Se abrirá el modal de la Factura de Venta POS con el logo de su taller, datos fiscales, desglose de IVA y pie de garantía.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Presione <strong>"Imprimir Factura"</strong> para el ticket del cliente.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">El carrito se limpiará automáticamente quedando listo para el siguiente cliente.</li>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">4. FLUJO OPERATIVO 4: RECEPCIÓN DE REPUESTOS POR ORDEN DE ENTRADA</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Objetivo:</strong> Ingresar al inventario repuestos nuevos entregados por un distribuidor mayorista.</p>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Paso a Paso:</h3>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Diríjase a la pestaña <strong>"Proveedores & Órdenes"</strong>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> En la sección <strong>"Órdenes de Entrada / Recepción"</strong>, presione <strong>"Nueva Recepción de Mercancía"</strong>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Seleccione el proveedor remitente (ej. <em>Importadora Nacional de Repuestos S.A.S.</em>).</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> Ingrese el número de factura o remisión del proveedor (ej. <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">FAC-PROV-9941</code>).</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>5.</strong> Seleccione el repuesto recibido, ingrese la cantidad física verificada en bodega y el costo unitario pactado.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>6.</strong> Presione <strong>"Registrar Entrada en Stock"</strong>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>7.</strong> <strong>Efecto Inmediato:</strong></p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">El stock del repuesto aumentará automáticamente.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">En el <strong>Kardex</strong> quedará grabada la entrada con el número de factura del proveedor y el costo actualizado.</li>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">5. FLUJO OPERATIVO 5: DEVOLUCIÓN DE REPUESTO DEFECTUOSO A PROVEEDOR</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Objetivo:</strong> Retirar del stock piezas que llegaron con defectos de fábrica o medidas erradas y devolverlas al distribuidor.</p>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Paso a Paso:</h3>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Ingrese a la pestaña <strong>"Proveedores & Órdenes"</strong> y seleccione la subpestaña <strong>"Devoluciones por Defecto"</strong>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Presione <strong>"Registrar Devolución a Proveedor"</strong>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Indique el repuesto defectuoso, el proveedor al que se le devuelve y la cantidad de unidades.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> Especifique el motivo técnico del defecto (ej. <em>Cilindro con rayón interno en camisa</em>, <em>Empaque con rotura de fábrica</em>).</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>5.</strong> Adjunte el número de radicado o guía de despacho.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>6.</strong> Guarde la devolución.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>7.</strong> <strong>Efecto Inmediato:</strong> El sistema descuenta las unidades defectuosas del stock y crea un movimiento en el Kardex tipo <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">DEVOLUCION_PROVEEDOR</code>, salvaguardando la garantía contable del taller.</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">6. FLUJO OPERATIVO 6: AUDITORÍA DE INVENTARIO Y CONTEO FÍSICO EN KARDEX</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Objetivo:</strong> Comparar las existencias físicas en los estantes con el saldo registrado en el software y justificar descuadres.</p>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Paso a Paso:</h3>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Ingrese a la pestaña <strong>"Kardex de Movimientos"</strong>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Filtre por el repuesto a auditar (ej. <em>Bujía NGK Iridium CR9EIA-9</em>).</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Revise la columna de <strong>Saldo Anterior</strong>, <strong>Cantidad Movida</strong> y <strong>Saldo Posterior</strong>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> Si el conteo físico en estantería difiere del sistema (ej. se contaron 8 unidades físicas pero el sistema marca 9):</p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Diríjase a <strong>"Inventario & Stock"</strong> y edite el stock del ítem.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">El sistema solicitará el motivo del ajuste (ej. <em>Rotura accidental en taller</em>, <em>Conteo de fin de mes</em>).</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">En el Kardex se insertará un asiento tipo <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">AJUSTE_INVENTARIO</code> con el nombre del responsable.</li>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">7. FLUJO OPERATIVO 7: CAMBIO Y SELECCIÓN DE TERMINAL DE TRABAJO</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Objetivo:</strong> Indicar al sistema en qué computadora o puesto físico se encuentra trabajando el operador.</p>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Paso a Paso:</h3>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Ubique en la esquina superior derecha de la cabecera el selector <strong>"Terminal"</strong>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Seleccione su terminal asignada:</p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">TERM-01</code>: Mostrador Principal (Recepción)</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">TERM-02</code>: Taller Bahía 1 (Mecánicos)</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">TERM-03</code>: Bodega de Repuestos (Almacén)</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">TERM-04</code>: Caja y Facturación</li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> A partir de ese momento, todas las cotizaciones, facturas y asientos de inventario quedarán firmados con el nombre de su terminal para garantizar trazabilidad ante cualquier revisión administrativa.</p>
+
+
+  <div class="footer-note">
+    <p>MotoGestión FX - Sistema Integral para Taller de Motocicletas | Generado oficialmente en formato Word / Imprimible PDF</p>
+  </div>
+</div>
+</body>
+</html>

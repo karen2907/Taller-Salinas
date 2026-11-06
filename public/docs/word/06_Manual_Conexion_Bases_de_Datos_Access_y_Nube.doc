@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office" 
+      xmlns:w="urn:schemas-microsoft-com:office:word" 
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+  <meta charset="utf-8">
+  <title>Manual de Creación y Conexión de Bases de Datos</title>
+  <!--[if gte mso 9]>
+  <xml>
+    <w:WordDocument>
+      <w:View>Print</w:View>
+      <w:Zoom>100</w:Zoom>
+      <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+  </xml>
+  <![endif]-->
+  <style>
+    @page Section1 {
+      size: 8.5in 11.0in;
+      margin: 1.0in 1.0in 1.0in 1.0in;
+      mso-header-margin: 0.5in;
+      mso-footer-margin: 0.5in;
+      mso-paper-source: 0;
+    }
+    div.Section1 {
+      page: Section1;
+    }
+    body {
+      font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.6;
+      color: #1e293b;
+      background-color: #ffffff;
+    }
+    .header-banner {
+      background-color: #0f172a;
+      color: #ffffff;
+      padding: 18pt 24pt;
+      border-radius: 6pt;
+      margin-bottom: 24pt;
+      border-bottom: 4pt solid #0284c7;
+    }
+    .header-badge {
+      display: inline-block;
+      background-color: #0284c7;
+      color: #ffffff;
+      font-size: 9pt;
+      font-weight: bold;
+      padding: 3pt 8pt;
+      border-radius: 3pt;
+      text-transform: uppercase;
+      letter-spacing: 1pt;
+      margin-bottom: 8pt;
+    }
+    .footer-note {
+      margin-top: 36pt;
+      padding-top: 12pt;
+      border-top: 1pt solid #cbd5e1;
+      font-size: 9pt;
+      color: #64748b;
+      text-align: center;
+    }
+    @media print {
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .header-banner {
+        background-color: #0f172a !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      table tr th {
+        background-color: #0f172a !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="Section1">
+  <div class="header-banner">
+    <div class="header-badge">BASES DE DATOS & SQL</div>
+    <h1 style="color: #ffffff; margin: 0; font-size: 24pt; font-weight: bold; border: none; padding: 0;">Manual de Creación y Conexión de Bases de Datos</h1>
+    <p style="color: #94a3b8; font-size: 12pt; margin: 6pt 0 0 0;">Microsoft Access, SQLite, PostgreSQL LAN y Bases en la Nube Gratuitas</p>
+    <div style="margin-top: 12pt; font-size: 9.5pt; color: #cbd5e1; border-top: 1pt solid #334155; padding-top: 8pt;">
+      <span><strong>Sistema:</strong> MotoGestión FX v2.4.0-PRO</span> &nbsp;|&nbsp;
+      <span><strong>Fecha:</strong> Octubre 2026</span> &nbsp;|&nbsp;
+      <span><strong>Documento Oficial de Entrega</strong></span>
+    </div>
+  </div>
+
+  <h1 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 22pt; font-weight: bold; border-bottom: 2pt solid #0284c7; padding-bottom: 6pt; margin-top: 24pt; margin-bottom: 10pt;">MANUAL DE CREACIÓN Y CONEXIÓN DE BASES DE DATOS</h1>
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">MICROSOFT ACCESS, SQLITE, POSTGRESQL LAN Y BASES DE DATOS EN LA NUBE GRATUITAS</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Para:</strong> Administradores de Base de Datos, Programadores y Gerentes de Taller</p>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Versión:</strong> 2.4.0</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">TABLA DE CONTENIDO</h3>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Aclaración Vital: ¿Sirve GitHub como Base de Datos?</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Crear y Conectar una Base de Datos Local en Microsoft Access (.accdb) con Java</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Por qué Access NO se Recomienda en Talleres Multi-Equipo</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> Alternativa Local Recomendada #1: SQLite (<code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">mototaller.db</code>)</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>5.</strong> Alternativa Local Multi-Equipo #2: PostgreSQL Local LAN</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>6.</strong> Bases de Datos Gratuitas en la Nube (Neon.tech & Supabase)</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>7.</strong> Configuración Paso a Paso en <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">database.properties</code></p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">1. ACLARACIÓN VITAL: ¿SIRVE GITHUB COMO BASE DE DATOS?</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Respuesta Técnica Directa: NO.</strong></p>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Existe una confusión común entre <strong>almacenar código</strong> y <strong>gestionar datos transaccionales</strong>:</p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>¿Qué es GitHub?:</strong> Es un servicio de almacenamiento y control de versiones para <strong>archivos y código fuente</strong> (usando Git). Está diseñado para guardar versiones históricas de archivos de texto (<code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">.java</code>, <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">.html</code>, <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">.css</code>, <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">.sql</code>).</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>¿Por qué NO sirve como base de datos de un taller?:</strong></li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> <strong>No soporta lenguaje SQL:</strong> No se pueden ejecutar consultas como <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">SELECT</code>, <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">UPDATE</code> o <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">JOIN</code>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> <strong>No tiene transacciones ACID:</strong> Si dos mecánicos intentan descontar stock al mismo segundo, GitHub no puede bloquear la fila ni resolver la concurrencia; generaría un conflicto de fusión (<em>merge conflict</em>).</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> <strong>No tiene seguridad de conexión:</strong> Exponer credenciales o datos de clientes en un repositorio público o privado es inseguro y no cumple con la legislación de protección de datos (Habeas Data).</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> <strong>Latencia extrema:</strong> Hacer un <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">git commit</code> y <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">git push</code> por cada repuesto vendido tardaría entre 2 y 5 segundos, congelando la caja del taller.</p>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Conclusión:</strong> GitHub se usa para <strong>respaldar y versionar el código de su aplicación Java</strong>, pero los datos de su inventario deben guardarse en un motor de base de datos relacional como <strong>SQLite</strong>, <strong>PostgreSQL</strong> o un servicio en la nube como <strong>Neon.tech</strong>.</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">2. CREAR Y CONECTAR BASE DE DATOS EN MICROSOFT ACCESS (.accdb)</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Si por requerimiento interno de su empresa debe conectarse a un archivo de <strong>Microsoft Access</strong>:</p>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Paso 1: Crear la Base de Datos en MS Access</h3>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Abra Microsoft Access en Windows.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Seleccione <strong>"Base de datos del escritorio en blanco"</strong>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Asígnele el nombre <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">mototaller.accdb</code> y guárdela en una ruta conocida, por ejemplo: <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">C:\taller\mototaller.accdb</code>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> Cree las tablas <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">repuesto</code>, <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">proveedor</code>, <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">kardex_movimiento</code> y <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">factura_venta</code> con los tipos de datos equivalentes (Texto corto, Número entero, Moneda, Fecha/Hora).</p>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Paso 2: Agregar el Driver JDBC de Access en <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">pom.xml</code></h3>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Java no incluye soporte nativo para Access desde Java 8. Se debe usar la librería de código abierto <strong>UCanAccess</strong>:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">&lt;dependencies&gt;
+    &lt;!-- Driver JDBC para Microsoft Access --&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;net.sf.ucanaccess&lt;/groupId&gt;
+        &lt;artifactId&gt;ucanaccess&lt;/artifactId&gt;
+        &lt;version&gt;5.0.1&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;</pre>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Paso 3: Código de Conexión Java para Access</h3>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">package com.mototaller.config;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class AccessConnection {
+    private static final String RUTA_ARCHIVO = &quot;C:/taller/mototaller.accdb&quot;;
+    private static final String URL_JDBC = &quot;jdbc:ucanaccess://&quot; + RUTA_ARCHIVO + &quot;;memory=false&quot;;
+
+    public static Connection getConnection() throws SQLException {
+        try {
+            Class.forName(&quot;net.sf.ucanaccess.jdbc.UcanaccessDriver&quot;);
+            return DriverManager.getConnection(URL_JDBC);
+        } catch (ClassNotFoundException e) {
+            throw new SQLException(&quot;Driver UCanAccess no encontrado en el classpath.&quot;, e);
+        }
+    }
+}</pre>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">3. LIMITACIONES SEVERAS DE MICROSOFT ACCESS EN UN TALLER</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Aunque Access funciona para un único usuario en una sola computadora, <strong>presenta graves fallas cuando se usa en un taller con varias terminales en red LAN</strong>:</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> <strong>Bloqueo por archivo (<em>File Locking</em>):</strong> Access no es un servidor de red; es un archivo compartido en una carpeta de Windows. Cuando la computadora de la Caja abre el archivo, frecuentemente bloquea el acceso de escritura para los mecánicos.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> <strong>Riesgo de Corrupción de Datos:</strong> Si un mecánico apaga su equipo o se desconecta la red Wi-Fi mientras se grababa una factura, el archivo <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">.accdb</code> puede corromperse por completo, perdiendo todo el inventario.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> <strong>Límite de 2 GB:</strong> El archivo no puede superar 2 GB de tamaño total.</p>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Por estas razones técnicas, la industria recomienda sustituir Access por <strong>SQLite</strong> (local monousuario) o <strong>PostgreSQL</strong> (local multi-equipo o nube).</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">4. ALTERNATIVA LOCAL RECOMENDADA #1: SQLITE</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>SQLite</strong> es el motor de base de datos más utilizado del mundo. Al igual que Access, se almacena en un solo archivo (<code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">mototaller.db</code>), pero es <strong>inmune a la corrupción por caídas de energía</strong>, es extremadamente rápido y no requiere instalar ningún programa adicional.</p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Driver Maven:</strong></li>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">  &lt;dependency&gt;
+      &lt;groupId&gt;org.xerial&lt;/groupId&gt;
+      &lt;artifactId&gt;sqlite-jdbc&lt;/artifactId&gt;
+      &lt;version&gt;3.45.1.0&lt;/version&gt;
+  &lt;/dependency&gt;</pre>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Cadena de Conexión:</strong></li>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">  db.url=jdbc:sqlite:mototaller.db</pre>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">El archivo <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">mototaller.db</code> se creará automáticamente en la carpeta de la aplicación la primera vez que se ejecute.</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">5. ALTERNATIVA LOCAL MULTI-EQUIPO #2: POSTGRESQL LOCAL LAN</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Si en su taller no hay internet estable pero tienen 4 computadoras conectadas al mismo router:</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Instale <strong>PostgreSQL 16</strong> en la computadora principal del taller (ej. la de Caja).</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Durante la instalación, asigne la contraseña del superusuario <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">postgres</code>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Abra <strong>pgAdmin 4</strong> o la consola <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">psql</code> y cree la base de datos:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">   CREATE DATABASE mototaller_db;</pre>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> Ejecute el script <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">src/main/resources/sql/schema_postgresql.sql</code> que viene incluido en el proyecto.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>5.</strong> Permita conexiones en red local en el archivo <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">postgresql.conf</code>:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">   listen_addresses = &#039;*&#039;</pre>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>6.</strong> En <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">pg_hba.conf</code>, autorice el rango de su red LAN:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">   host  all  all  192.168.1.0/24  scram-sha-256</pre>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">6. BASES DE DATOS GRATUITAS EN LA NUBE</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Si desea consultar el inventario desde su casa, desde el celular o sincronizar sucursales del taller, las mejores opciones <strong>100% gratuitas</strong> son:</p>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Opción 1: Neon.tech (PostgreSQL Serverless - La Mejor Opción)</h3>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>¿Qué ofrece gratis?:</strong></li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Servidor PostgreSQL 16 dedicado en la nube.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">500 MB de almacenamiento (suficiente para más de 100,000 repuestos y 300,000 facturas).</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Consola web interactiva para ver y editar tablas con un clic.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Conexiones cifradas SSL automáticas.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Paso a Paso:</strong></li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Ingrese a [https://neon.tech](https://neon.tech) y cree una cuenta gratuita con su correo o GitHub.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Cree un nuevo proyecto: llámelo <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">mototaller-cloud</code>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> En el panel principal verá su cadena de conexión JDBC lista para copiar:</p>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">jdbc:postgresql://ep-silent-shadow-a5abc.us-east-2.aws.neon.tech/neondb?sslmode=require</code></p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> Vaya a la pestaña <strong>"SQL Editor"</strong> en Neon, pegue el contenido de <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">schema_postgresql.sql</code> y presione <strong>Run</strong>. ¡Su base de datos estará activa en 10 segundos!</p>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Opción 2: Supabase (PostgreSQL en la Nube)</h3>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>¿Qué ofrece gratis?:</strong></li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Base de datos PostgreSQL con 500 MB de espacio gratuito.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Panel web estilo hoja de cálculo para editar repuestos visualmente.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Copias de seguridad automáticas.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Paso a Paso:</strong></li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Ingrese a [https://supabase.com](https://supabase.com) y regístrese gratis.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Cree una organización y un proyecto: <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">mototaller-db</code>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Vaya a <strong>Project Settings -> Database -> Connection string -> JDBC</strong>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> Copie la URL e ingrésela en su software.</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">7. CONFIGURACIÓN EN <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">database.properties</code></h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">En su proyecto Java, ubique el archivo <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">src/main/resources/database.properties</code>. Simplemente descomente el bloque que vaya a utilizar:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;"># ========================================================
+# PERFIL 1: BASE DE DATOS LOCAL SIN INSTALACIÓN (SQLITE)
+# ========================================================
+db.driver=org.sqlite.JDBC
+db.url=jdbc:sqlite:mototaller.db
+db.user=
+db.password=
+db.pool.size=5
+
+# ========================================================
+# PERFIL 2: RED LOCAL LAN TALLER (POSTGRESQL MULTI-PC)
+# ========================================================
+# db.driver=org.postgresql.Driver
+# db.url=jdbc:postgresql://192.168.1.100:5432/mototaller_db
+# db.user=postgres
+# db.password=TuClaveSegura2026
+# db.pool.size=15
+
+# ========================================================
+# PERFIL 3: NUBE GRATUITA (NEON.TECH SERVERLESS)
+# ========================================================
+# db.driver=org.postgresql.Driver
+# db.url=jdbc:postgresql://ep-silent-shadow-a5abc.us-east-2.aws.neon.tech/neondb?sslmode=require
+# db.user=neondb_owner
+# db.password=TuClaveNeonSecret
+# db.pool.size=10</pre>
+
+
+  <div class="footer-note">
+    <p>MotoGestión FX - Sistema Integral para Taller de Motocicletas | Generado oficialmente en formato Word / Imprimible PDF</p>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office" 
+      xmlns:w="urn:schemas-microsoft-com:office:word" 
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+  <meta charset="utf-8">
+  <title>Manual de Instalación y Despliegue Local</title>
+  <!--[if gte mso 9]>
+  <xml>
+    <w:WordDocument>
+      <w:View>Print</w:View>
+      <w:Zoom>100</w:Zoom>
+      <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+  </xml>
+  <![endif]-->
+  <style>
+    @page Section1 {
+      size: 8.5in 11.0in;
+      margin: 1.0in 1.0in 1.0in 1.0in;
+      mso-header-margin: 0.5in;
+      mso-footer-margin: 0.5in;
+      mso-paper-source: 0;
+    }
+    div.Section1 {
+      page: Section1;
+    }
+    body {
+      font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.6;
+      color: #1e293b;
+      background-color: #ffffff;
+    }
+    .header-banner {
+      background-color: #0f172a;
+      color: #ffffff;
+      padding: 18pt 24pt;
+      border-radius: 6pt;
+      margin-bottom: 24pt;
+      border-bottom: 4pt solid #0284c7;
+    }
+    .header-badge {
+      display: inline-block;
+      background-color: #0284c7;
+      color: #ffffff;
+      font-size: 9pt;
+      font-weight: bold;
+      padding: 3pt 8pt;
+      border-radius: 3pt;
+      text-transform: uppercase;
+      letter-spacing: 1pt;
+      margin-bottom: 8pt;
+    }
+    .footer-note {
+      margin-top: 36pt;
+      padding-top: 12pt;
+      border-top: 1pt solid #cbd5e1;
+      font-size: 9pt;
+      color: #64748b;
+      text-align: center;
+    }
+    @media print {
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .header-banner {
+        background-color: #0f172a !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      table tr th {
+        background-color: #0f172a !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="Section1">
+  <div class="header-banner">
+    <div class="header-badge">INSTALACIÓN & DESPLIEGUE</div>
+    <h1 style="color: #ffffff; margin: 0; font-size: 24pt; font-weight: bold; border: none; padding: 0;">Manual de Instalación y Despliegue Local</h1>
+    <p style="color: #94a3b8; font-size: 12pt; margin: 6pt 0 0 0;">De Google AI Studio a los Equipos del Taller en Red LAN</p>
+    <div style="margin-top: 12pt; font-size: 9.5pt; color: #cbd5e1; border-top: 1pt solid #334155; padding-top: 8pt;">
+      <span><strong>Sistema:</strong> MotoGestión FX v2.4.0-PRO</span> &nbsp;|&nbsp;
+      <span><strong>Fecha:</strong> Octubre 2026</span> &nbsp;|&nbsp;
+      <span><strong>Documento Oficial de Entrega</strong></span>
+    </div>
+  </div>
+
+  <h1 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 22pt; font-weight: bold; border-bottom: 2pt solid #0284c7; padding-bottom: 6pt; margin-top: 24pt; margin-bottom: 10pt;">MANUAL DE INSTALACIÓN, DESCARGA Y DESPLIEGUE LOCAL</h1>
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">SISTEMA MOTOGESTIÓN FX - DE GOOGLE AI STUDIO A LOS EQUIPOS DEL TALLER</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Para:</strong> Administradores de TI, Soporte Técnico y Dueños de Taller</p>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Versión:</strong> 2.4.0</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">TABLA DE CONTENIDO</h3>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Cómo Descargar el Proyecto desde Google AI Studio</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Requisitos Previos del Sistema (Hardware y Software)</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Instalación de Java JDK 21 y Apache Maven</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> Configuración del Entorno en Visual Studio Code</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>5.</strong> Compilación del Proyecto con Maven (<code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">mvn clean package</code>)</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>6.</strong> Generación de un Ejecutable Nativo (.exe) con JPackage</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>7.</strong> Despliegue en Red Local (LAN) para Múltiples Equipos</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>8.</strong> Mantenimiento y Respaldos Diarios</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">1. CÓMO DESCARGAR EL PROYECTO DESDE GOOGLE AI STUDIO</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Para trasladar este software a las computadoras físicas de su taller, siga uno de estos métodos:</p>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Método A: Descarga en Archivo ZIP (Recomendado)</h3>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> En la interfaz de <strong>Google AI Studio Build</strong>, ubique el menú superior derecho de opciones del proyecto (icono de tres puntos o menú de archivo).</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Seleccione la opción <strong>"Download Project as ZIP"</strong> (Descargar Proyecto como ZIP) o <strong>"Export Code"</strong>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Guarde el archivo <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">.zip</code> en su computador (ej. <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">motogestion-fx-main.zip</code>).</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> Haga clic derecho sobre el archivo y seleccione <strong>"Extraer todo..."</strong> en una carpeta de fácil acceso, por ejemplo:</p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">En Windows: <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">C:\Sistemas\motogestion-fx</code></li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">En Linux/Mac: <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">~/Sistemas/motogestion-fx</code></li>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Método B: Clonar vía Git (Si sincronizó con GitHub / GitLab)</h3>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Abra su terminal y ejecute:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">git clone &lt;URL_DE_SU_REPOSITORIO&gt;
+cd motogestion-fx</pre>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">2. REQUISITOS PREVIOS DEL SISTEMA</h2>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Requisitos de Hardware (Por cada PC del Taller):</h3>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Procesador:</strong> Intel Core i3 / AMD Ryzen 3 o superior (2 núcleos, 2.0 GHz+).</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Memoria RAM:</strong> 4 GB mínimo (8 GB recomendados para mayor fluidez con gráficos HD).</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Almacenamiento:</strong> 500 MB libres para la aplicación + 2 GB para la base de datos local.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Pantalla:</strong> Resolución mínima 1366 x 768 (Óptimo 1920 x 1080 Full HD).</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Conexión de Red:</strong> Tarjeta de red Ethernet o Wi-Fi conectada al router del taller.</li>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Requisitos de Software:</h3>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Sistema Operativo:</strong> Windows 10 / Windows 11 (64-bit), Ubuntu Linux 20.04+, o macOS Sonoma/Sequoia.</li>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">3. INSTALACIÓN DE JAVA JDK 21 Y APACHE MAVEN</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Para ejecutar y compilar aplicaciones JavaFX modernas, se recomienda <strong>BellSoft Liberica JDK Full</strong> (que ya incluye JavaFX integrado) o <strong>Eclipse Temurin JDK 21</strong>:</p>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Paso 1: Instalar JDK 21 con JavaFX</h3>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Ingrese a [https://bell-sw.com/pages/downloads/](https://bell-sw.com/pages/downloads/)</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> En la sección <strong>Package Type</strong>, asegúrese de seleccionar <strong>"Full JDK"</strong> (versión 21 LTS).</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Descargue el instalador <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">.msi</code> para Windows o <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">.deb</code>/<code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">.tar.gz</code> para Linux.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> Ejecute el instalador y marque la casilla: <strong>"Set JAVA_HOME variable"</strong> y <strong>"Add to PATH"</strong>.</p>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Paso 2: Verificar la instalación en la Terminal</h3>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Abra <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">cmd</code> o PowerShell y escriba:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">java -version</pre>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Debe responder: <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">openjdk version "21.0.x" ...</code></p>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Paso 3: Instalar Apache Maven (Si no lo tiene)</h3>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Descargue el archivo binario <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">.zip</code> desde [https://maven.apache.org/download.cgi](https://maven.apache.org/download.cgi)</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Descomprímalo en <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">C:\Program Files\apache-maven-3.9.6</code></p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Agregue la ruta <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">C:\Program Files\apache-maven-3.9.6\bin</code> a las <strong>Variables de Entorno (PATH)</strong> de Windows.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> Verifique con:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">mvn -version</pre>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">4. CONFIGURACIÓN EN VISUAL STUDIO CODE</h2>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Abra Visual Studio Code.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Vaya a la pestaña de Extensiones (<code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">Ctrl + Shift + X</code>).</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Instale el paquete oficial de Microsoft: <strong>"Extension Pack for Java"</strong>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> Instale también <strong>"Maven for Java"</strong>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>5.</strong> Abra la carpeta del proyecto descargado: <strong>Archivo -> Abrir Carpeta... -> <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">C:\Sistemas\motogestion-fx</code></strong>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>6.</strong> VS Code detectará automáticamente el archivo <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">pom.xml</code> y descargará las dependencias necesarias (<code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">javafx-controls</code>, <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">javafx-fxml</code>, <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">HikariCP</code>, <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">postgresql</code>, <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">sqlite-jdbc</code>).</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">5. COMPILACIÓN DEL PROYECTO CON MAVEN</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Abra la terminal integrada en VS Code (<code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">Ctrl + ñ</code> o Terminal -> Nueva Terminal) y ejecute:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;"># Limpiar y compilar el proyecto
+mvn clean compile
+
+# Ejecutar la aplicación en modo desarrollo
+mvn javafx:run
+
+# Generar el archivo ejecutable JAR empaquetado
+mvn clean package</pre>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Al finalizar, encontrará el archivo ejecutable en:</p>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">target/mototaller-javafx-1.0.0.jar</code></p>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Para probar la ejecución directa del JAR:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">java -jar target/mototaller-javafx-1.0.0.jar</pre>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">6. GENERACIÓN DE UN INSTALADOR EJECUTABLE NATIVO (.EXE)</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Para que los mecánicos y cajeros no tengan que abrir consolas ni instalar Java manualmente, podemos empaquetar un instalador <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">.exe</code> independiente usando la herramienta oficial <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">jpackage</code> incluida en JDK 21:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">jpackage \
+  --input target/ \
+  --name &quot;MotoGestionFX&quot; \
+  --main-jar mototaller-javafx-1.0.0.jar \
+  --main-class com.mototaller.MainApp \
+  --type exe \
+  --win-dir-chooser \
+  --win-menu \
+  --win-shortcut \
+  --icon src/main/resources/images/icono_taller.ico</pre>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Esto generará un instalador <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">MotoGestionFX-1.0.0.exe</code> que crea un acceso directo en el escritorio de Windows con el logo de su taller.</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">7. DESPLIEGUE EN RED LOCAL (LAN) MULTIEQUIPO</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Para que las 4 terminales del taller compartan la misma información en tiempo real:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">[ Router del Taller / Wi-Fi LAN ]
+           │
+ ┌─────────┼──────────────────────────┬────────────────────────┐
+ │ (Servidor LAN: 192.168.1.100)      │                        │
+ ▼                                    ▼                        ▼
+Terminal 1: Caja / Servidor      Terminal 2: Mostrador   Terminal 3: Mecánicos
+PostgreSQL + MotoGestión FX      MotoGestión FX          MotoGestión FX (Tablet)</pre>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">Configuración en los Equipos Clientes:</h3>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">En cada computadora del taller, abra el archivo <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">src/main/resources/database.properties</code>:</p>
+<pre style="background-color: #0f172a; color: #38bdf8; padding: 12pt; border-radius: 6pt; font-family: 'Consolas', 'Courier New', monospace; font-size: 9.5pt; line-height: 1.4; border: 1pt solid #1e293b; overflow-x: auto; white-space: pre-wrap;">db.type=lan_postgres
+db.url=jdbc:postgresql://192.168.1.100:5432/mototaller_db
+db.user=motouser
+db.password=MotoPass2026!
+db.pool.size=10</pre>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Reemplace <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">192.168.1.100</code> por la IP fija de la computadora designada como Servidor Principal en su taller. ¡Listo! Todas las terminales compartirán stock, cotizaciones y kardex al instante.</p>
+
+
+  <div class="footer-note">
+    <p>MotoGestión FX - Sistema Integral para Taller de Motocicletas | Generado oficialmente en formato Word / Imprimible PDF</p>
+  </div>
+</div>
+</body>
+</html>

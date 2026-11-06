@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office" 
+      xmlns:w="urn:schemas-microsoft-com:office:word" 
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+  <meta charset="utf-8">
+  <title>Manual de Usuario Funcional</title>
+  <!--[if gte mso 9]>
+  <xml>
+    <w:WordDocument>
+      <w:View>Print</w:View>
+      <w:Zoom>100</w:Zoom>
+      <w:DoNotOptimizeForBrowser/>
+    </w:WordDocument>
+  </xml>
+  <![endif]-->
+  <style>
+    @page Section1 {
+      size: 8.5in 11.0in;
+      margin: 1.0in 1.0in 1.0in 1.0in;
+      mso-header-margin: 0.5in;
+      mso-footer-margin: 0.5in;
+      mso-paper-source: 0;
+    }
+    div.Section1 {
+      page: Section1;
+    }
+    body {
+      font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.6;
+      color: #1e293b;
+      background-color: #ffffff;
+    }
+    .header-banner {
+      background-color: #0f172a;
+      color: #ffffff;
+      padding: 18pt 24pt;
+      border-radius: 6pt;
+      margin-bottom: 24pt;
+      border-bottom: 4pt solid #0284c7;
+    }
+    .header-badge {
+      display: inline-block;
+      background-color: #0284c7;
+      color: #ffffff;
+      font-size: 9pt;
+      font-weight: bold;
+      padding: 3pt 8pt;
+      border-radius: 3pt;
+      text-transform: uppercase;
+      letter-spacing: 1pt;
+      margin-bottom: 8pt;
+    }
+    .footer-note {
+      margin-top: 36pt;
+      padding-top: 12pt;
+      border-top: 1pt solid #cbd5e1;
+      font-size: 9pt;
+      color: #64748b;
+      text-align: center;
+    }
+    @media print {
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .header-banner {
+        background-color: #0f172a !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      table tr th {
+        background-color: #0f172a !important;
+        color: #ffffff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="Section1">
+  <div class="header-banner">
+    <div class="header-badge">MANUAL DE USUARIO</div>
+    <h1 style="color: #ffffff; margin: 0; font-size: 24pt; font-weight: bold; border: none; padding: 0;">Manual de Usuario Funcional</h1>
+    <p style="color: #94a3b8; font-size: 12pt; margin: 6pt 0 0 0;">Perfiles de Acceso, Pantallas y Funcionalidades por Rol</p>
+    <div style="margin-top: 12pt; font-size: 9.5pt; color: #cbd5e1; border-top: 1pt solid #334155; padding-top: 8pt;">
+      <span><strong>Sistema:</strong> MotoGestión FX v2.4.0-PRO</span> &nbsp;|&nbsp;
+      <span><strong>Fecha:</strong> Octubre 2026</span> &nbsp;|&nbsp;
+      <span><strong>Documento Oficial de Entrega</strong></span>
+    </div>
+  </div>
+
+  <h1 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 22pt; font-weight: bold; border-bottom: 2pt solid #0284c7; padding-bottom: 6pt; margin-top: 24pt; margin-bottom: 10pt;">MANUAL DE USUARIO</h1>
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">SISTEMA MOTOGESTIÓN FX - GESTIÓN DE TALLER, INVENTARIOS Y COTIZACIONES</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Para:</strong> Operadores, Mecánicos, Asesores de Mostrador, Bodegueros y Administradores</p>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;"><strong>Versión de la Guía:</strong> 2.4.0</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">TABLA DE CONTENIDO</h3>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Introducción y Filosofía del Sistema</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Roles de Usuario y Perfiles de Acceso</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Estructura de la Pantalla Principal</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> Uso del Diagrama Interactivo de Motocicleta</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>5.</strong> El Carrito Persistente: Cotizaciones vs Facturación</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>6.</strong> Consulta de Inventario y Alertas de Stock</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>7.</strong> Navegación en el Kardex y Proveedores</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>8.</strong> Acceso al Módulo de Administrador y Seguridad</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>9.</strong> Solución a Preguntas Frecuentes</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">1. INTRODUCCIÓN Y FILOSOFÍA DEL SISTEMA</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Bienvenido a <strong>MotoGestión FX</strong>. Esta herramienta ha sido concebida para simplificar el trabajo diario en el taller de motocicletas. A diferencia de las hojas de cálculo tradicionales o programas genéricos, aquí encontrará la moto representada gráficamente, permitiendo que cualquier miembro del equipo identifique repuestos compatibles en segundos, prepare cotizaciones claras para los clientes y registre ventas sin errores de inventario.</p>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">2. ROLES DE USUARIO Y PERFILES DE ACCESO</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">El sistema distingue 5 perfiles de trabajo dentro del taller:</p>
+<table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse; width: 100%; margin: 14pt 0; font-size: 10pt; border-color: #cbd5e1;">
+  <tr style="background-color: #0f172a; color: #ffffff;">
+    <th style="padding: 8pt 10pt; text-align: left; font-weight: bold; border: 1pt solid #cbd5e1; color: #ffffff;">Perfil</th>
+    <th style="padding: 8pt 10pt; text-align: left; font-weight: bold; border: 1pt solid #cbd5e1; color: #ffffff;">Ubicación Física Típica</th>
+    <th style="padding: 8pt 10pt; text-align: left; font-weight: bold; border: 1pt solid #cbd5e1; color: #ffffff;">Funciones Principales</th>
+    <th style="padding: 8pt 10pt; text-align: left; font-weight: bold; border: 1pt solid #cbd5e1; color: #ffffff;">Restricciones de Seguridad</th>
+  </tr>
+  <tr style="background-color: #ffffff;">
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;"><strong>Mecánico / Técnico</strong></td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">Bahía de servicio / Taller</td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">Clic en el Diagrama de la moto para ubicar repuestos; agregar piezas al carrito para solicitar a bodega.</td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">No puede modificar precios de costo ni cambiar configuraciones del taller.</td>
+  </tr>
+  <tr style="background-color: #f8fafc;">
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;"><strong>Asesor de Mostrador</strong></td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">Recepción de motos</td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">Búsqueda por placa y modelo; elaboración e impresión de Cotizaciones para aprobación del cliente.</td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">No puede alterar el Kardex contable manualmente.</td>
+  </tr>
+  <tr style="background-color: #ffffff;">
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;"><strong>Bodeguero / Almacén</strong></td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">Almacén de repuestos</td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">Recepción de Órdenes de Entrada de proveedores; devolución de piezas con defecto de fábrica; control de stock físico.</td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">No puede acceder a configuraciones fiscales o bases de datos.</td>
+  </tr>
+  <tr style="background-color: #f8fafc;">
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;"><strong>Cajero</strong></td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">Caja / Facturación</td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">Cobro de órdenes de trabajo; emisión de Facturas de Venta POS; arqueo diario de caja.</td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">No puede eliminar asientos del Kardex ni modificar el logo del taller.</td>
+  </tr>
+  <tr style="background-color: #ffffff;">
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;"><strong>Administrador</strong></td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">Oficina Principal</td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;">Control total: Configuración de la empresa, cambio de logo, ajuste de IVA, gestión de terminales LAN, base de datos y código.</td>
+    <td style="padding: 7pt 10pt; border: 1pt solid #cbd5e1; color: #1e293b;"><strong>Requiere Contraseña Maestra (PIN) para ingresar.</strong></td>
+  </tr>
+</table>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">3. ESTRUCTURA DE LA PANTALLA PRINCIPAL</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Al iniciar la aplicación, la pantalla se organiza en 3 grandes áreas ergonómicas:</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> <strong>Barra Superior (Cabecera & LAN):</strong></p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Indicador de Red Local:</strong> Muestra la IP del servidor de base de datos y el estado de la conexión (<code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">Pool HikariCP: 15/15 Conexiones</code>).</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Selector de Terminal de Trabajo:</strong> Identifica desde qué puesto físico se está operando (ej. <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">Mostrador Principal</code>, <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">Bahía Mecánicos 1</code>).</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Alerta de Stock Mínimo:</strong> Botón ámbar que indica cuántos repuestos tienen existencia crítica.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Identidad del Taller:</strong> Logo corporativo, nombre comercial y slogan configurados por el administrador.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Pestañas de Navegación:</strong> Acceso a <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">Diagrama Moto HD</code>, <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">Inventario & Stock</code>, <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">Kardex</code>, <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">Proveedores</code> y <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">Módulo Administrador</code>.</li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> <strong>Área Central de Trabajo (Vista Activa):</strong></p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Muestra la pantalla seleccionada (Diagrama visual, tablas de inventario, etc.).</li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> <strong>Panel Lateral Derecho (Carrito Persistente):</strong></p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Siempre visible. Mantiene los repuestos que usted va seleccionando sin importar si cambia de pestaña.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Contiene los botones de acción inmediata: <strong>"Generar Cotización"</strong> y <strong>"Facturar / Vender"</strong>.</li>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">4. USO DEL DIAGRAMA INTERACTIVO DE MOTOCICLETA</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">El módulo de exploración visual es el corazón del sistema:</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> <strong>Exploración Directa sobre la Foto:</strong></p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Al pasar el cursor del mouse sobre la moto deportiva (Kawasaki Ninja ZX-10RR), verá que partes como el <strong>carenado</strong>, la <strong>cúpula</strong>, las <strong>mordazas de freno Brembo</strong>, la <strong>suspensión invertida</strong>, el <strong>motor</strong>, el <strong>radiador</strong>, el <strong>escape Akrapovic</strong>, el <strong>asiento</strong> o la <strong>cadena</strong> se iluminan en color verde lima neón.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Haga clic directamente sobre la pieza:</strong> El sistema reconocerá la zona anatómica seleccionada al instante.</li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> <strong>Despliegue Contextual de Repuestos:</strong></p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Al hacer clic en una parte de la moto, la pantalla desplegará la lista de repuestos compatibles con esa sección.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Puede filtrar adicionalmente por:</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Marca de Moto:</strong> Yamaha, Suzuki, Kawasaki, Bajaj, Honda, AKT, KTM o Universal.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Cilindraje:</strong> Desde 100cc (motos de trabajo) hasta 1000cc (superdeportivas).</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Buscador de texto:</strong> Para buscar por código OEM o descripción rápida.</li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> <strong>Adición al Carrito:</strong></p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Seleccione la cantidad deseada usando los botones <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">+</code> y <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">-</code>.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Presione <strong>"Agregar"</strong> o el botón del carrito verde. El ítem se sumará al panel lateral derecho con una confirmación visual.</li>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">5. EL CARRITO PERSISTENTE: COTIZACIONES VS FACTURACIÓN</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">El panel lateral derecho permite dos operaciones comerciales distintas:</p>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">A. Generar Cotización (Proforma)</h3>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>¿Cuándo usarla?:</strong> Cuando el cliente pide un presupuesto antes de autorizar la reparación de su moto.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Procedimiento:</strong></li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Agregue los repuestos necesarios al carrito.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Ingrese los datos del cliente (Nombre, Teléfono, Placa y Modelo de la moto).</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Presione el botón azul <strong>"Generar Cotización"</strong>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> Se abrirá una ventana con la proforma formal con vigencia (ej. 15 días) y desglose de IVA.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>5.</strong> Puede imprimirla o entregarla al cliente.</p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Efecto en el inventario:</strong> <strong>NINGUNO</strong>. Las cotizaciones NO descuentan repuestos del inventario.</li>
+<h3 style="color: #0f172a; font-family: 'Calibri', Arial, sans-serif; font-size: 13pt; font-weight: bold; margin-top: 14pt; margin-bottom: 6pt;">B. Facturar / Vender (Descuento de Stock)</h3>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>¿Cuándo usarla?:</strong> Cuando el cliente paga los repuestos o la orden de servicio está terminada.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Procedimiento:</strong></li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Revise los ítems del carrito.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Diligencie el documento del cliente y seleccione el medio de pago (Efectivo, Tarjeta, Transferencia, Crédito).</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Presione el botón verde <strong>"Facturar / Vender"</strong>.</p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Efecto en el inventario:</strong></li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Se descuentan las unidades vendidas en tiempo real.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Se genera automáticamente el asiento contable en el <strong>Kardex</strong> con tipo <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">VENTA</code>.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Se muestra el recibo POS con código de factura para imprimir.</li>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">6. CONSULTA DE INVENTARIO Y ALERTAS DE STOCK</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">En la pestaña <strong>"Inventario & Stock"</strong>:</p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Podrá ver la lista completa de todos los repuestos del taller.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Los productos con stock menor o igual al mínimo tendrán un distintivo rojo parpadeante de <strong>"CRÍTICO"</strong>.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Puede registrar nuevos repuestos con su código SKU, referencia de fabricante, costos y precios de venta.</li>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">7. NAVEGACIÓN EN EL KARDEX Y PROVEEDORES</h2>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Kardex:</strong> Es la hoja de vida inmutable de las entradas y salidas de mercancía. Muestra fecha, número de documento, tipo de movimiento, cantidad, saldos y la terminal que operó el registro.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>Proveedores & Órdenes:</strong> Permite crear órdenes de entrada para surtir el almacén y gestionar devoluciones a distribuidores cuando una pieza llega con defecto de fábrica.</li>
+<hr style="border: none; border-top: 1.5pt solid #e2e8f0; margin: 18pt 0;" />
+<h2 style="color: #0369a1; font-family: 'Calibri', Arial, sans-serif; font-size: 16pt; font-weight: bold; border-bottom: 1pt solid #cbd5e1; padding-bottom: 4pt; margin-top: 20pt; margin-bottom: 8pt;">8. ACCESO AL MÓDULO DE ADMINISTRADOR Y SEGURIDAD</h2>
+<p style="margin: 6pt 0 10pt 0; color: #1e293b; line-height: 1.6; font-size: 11pt; text-align: justify;">Por seguridad del negocio, la configuración del taller y el cambio de logo están protegidos:</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>1.</strong> Al hacer clic en la pestaña <strong>"Módulo Administrador"</strong>, se abrirá una ventana solicitando la <strong>Contraseña Maestra</strong>.</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>2.</strong> Ingrese la contraseña asignada (clave inicial de fábrica: <code style="font-family: 'Consolas', monospace; background-color: #f1f5f9; color: #0369a1; padding: 1pt 4pt; border-radius: 3pt; font-size: 10pt; border: 1pt solid #e2e8f0;">admin123</code>).</p>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>3.</strong> Al autenticarse, tendrá acceso a:</p>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Cambiar el Nombre comercial, slogan, NIT y teléfonos del taller.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Subir un nuevo <strong>Logo del Taller</strong> desde su computador.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Configurar porcentajes de IVA, prefijos de facturas y alertas de stock.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Cambiar la contraseña maestra de administrador.</li>
+<li style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;">Consultar la guía de código y bases de datos.</li>
+<p style="margin-left: 20pt; margin-bottom: 4pt; color: #1e293b; line-height: 1.5;"><strong>4.</strong> Para proteger el sistema al retirarse de su puesto, presione el botón <strong>"Bloquear / Cerrar Sesión"</strong>.</p>
+
+
+  <div class="footer-note">
+    <p>MotoGestión FX - Sistema Integral para Taller de Motocicletas | Generado oficialmente en formato Word / Imprimible PDF</p>
+  </div>
+</div>
+</body>
+</html>
