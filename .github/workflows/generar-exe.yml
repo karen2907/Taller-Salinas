@@ -31,7 +31,12 @@ jobs:
           {
             "name": "motogestion-fx",
             "version": "1.0.0",
-            "main": "main.js"
+            "description": "Sistema de Taller MotoGestion FX",
+            "author": "Karen Salinas",
+            "main": "main.js",
+            "devDependencies": {
+              "electron": "^29.0.0"
+            }
           }
           EOF
           cat << 'EOF' > build-desktop/main.js
@@ -51,11 +56,18 @@ jobs:
           app.on('window-all-closed', () => { if (process.platform !== 'darwin') app.quit(); });
           EOF
 
-      - name: 6. Instalar Electron Builder
-        run: npm install -g electron-builder
+      - name: 6. Instalar Electron y Builder
+        shell: bash
+        run: |
+          cd build-desktop
+          npm install --legacy-peer-deps
+          npm install -D electron-builder --legacy-peer-deps
 
       - name: 7. Empaquetar Instalador .EXE para Windows
-        run: electron-builder --projectDir=build-desktop --win nsis --config.productName="MotoGestion-FX" --config.directories.output=../dist-final
+        shell: bash
+        run: |
+          cd build-desktop
+          npx electron-builder --win nsis --config.productName="MotoGestion-FX" --config.directories.output=../dist-final
 
       - name: 8. Subir Instalador .EXE
         uses: actions/upload-artifact@v4
