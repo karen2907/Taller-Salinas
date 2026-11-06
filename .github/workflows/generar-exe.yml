@@ -17,15 +17,18 @@ jobs:
           node-version: 20
 
       - name: 3. Instalar Dependencias
-        run: npm install
+        run: npm install --legacy-peer-deps
 
-      - name: 4. Compilar Aplicacion
+      - name: 4. Instalar Electron y Builder
+        run: npm install -D electron electron-builder --legacy-peer-deps
+
+      - name: 5. Compilar Aplicacion
         run: npm run build
 
-      - name: 5. Empaquetar Instalador .EXE para Windows
-        run: npx --yes electron-builder --win --config.directories.output=dist-installer --config.win.target=nsis --config.productName="MotoGestion-FX"
+      - name: 6. Empaquetar Instalador .EXE para Windows
+        run: npx electron-builder --win --config.directories.output=dist-installer --config.win.target=nsis --config.productName="MotoGestion-FX"
 
-      - name: 6. Subir Instalador .EXE
+      - name: 7. Subir Instalador .EXE
         uses: actions/upload-artifact@v4
         with:
           name: MotoGestion-Setup-Windows-EXE
