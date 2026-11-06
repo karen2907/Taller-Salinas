@@ -1,0 +1,32 @@
+name: Generar Instalador .EXE de MotoGestion FX
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-windows-exe:
+    runs-on: windows-latest
+
+    steps:
+      - name: 1. Descargar Codigo
+        uses: actions/checkout@v4
+
+      - name: 2. Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 3. Instalar Dependencias
+        run: npm install
+
+      - name: 4. Compilar Aplicacion
+        run: npm run build
+
+      - name: 5. Empaquetar Instalador .EXE para Windows
+        run: npx --yes electron-builder --win --config.directories.output=dist-installer --config.win.target=nsis --config.productName="MotoGestion-FX"
+
+      - name: 6. Subir Instalador .EXE
+        uses: actions/upload-artifact@v4
+        with:
+          name: MotoGestion-Setup-Windows-EXE
+          path: dist-installer/*.exe
