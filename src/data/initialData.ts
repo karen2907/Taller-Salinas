@@ -1,4 +1,4 @@
-import { ZonaMoto, Repuesto, Proveedor, MovimientoKardex, OrdenCompra, TerminalLAN, TallerConfig } from '../types/workshop';
+import { ZonaMoto, Repuesto, Proveedor, MovimientoKardex, OrdenCompra, TerminalLAN, TallerConfig, FacturaVenta } from '../types/workshop';
 
 export const TALLER_CONFIG_INICIAL: TallerConfig = {
   nombre: 'MOTO RACING PRO SERVICE',
@@ -1219,36 +1219,36 @@ export const REPUESTOS_INICIALES: Repuesto[] = [
   // =========================================================================
   {
     id: 8,
-    codigo: 'ELE-UNI-008',
+    codigo: 'ELE-BAJ-008',
     referenciaOEM: 'YTX9-BS-GEL',
-    nombre: 'Batería de Gel Sellada Libre de Mantenimiento 12V 9Ah',
+    nombre: 'Batería de Gel Sellada Libre de Mantenimiento 12V 9Ah Pulsar NS 200 / Dominar',
     zonaId: 'electrico',
     subparte: 'Batería y Carga',
-    marcaMoto: 'Universal',
-    cilindraje: 'Universal',
-    anoCompatibilidad: 'Universal',
-    modelosCompatibles: ['Pulsar 200 NS', 'Duke 200/390', 'Ninja 400', 'Gixxer 250', 'FZ 25'],
+    marcaMoto: 'Bajaj',
+    cilindraje: '200cc',
+    anoCompatibilidad: '2016 - 2025',
+    modelosCompatibles: ['Pulsar 200 NS', 'Pulsar RS 200', 'Dominar 250 / 400'],
     stockActual: 10,
     stockMinimo: 5,
     precioCosto: 95000,
     precioVenta: 165000,
     ubicacionBodega: 'Estante B-01',
     proveedorId: 2,
-    descripcion: 'Batería con electrólito gelificado nano-tecnológico. Mayor resistencia a vibraciones y autodescarga lenta.',
+    descripcion: 'Batería con electrólito gelificado nano-tecnológico. Mayor resistencia a vibraciones y autodescarga lenta para motores DTS-i.',
     unidadMedida: 'Unidad',
     especificacionesTecnicas: '12V 9Ah, CCA 140A (-18°C), Dimensiones 150x87x105mm'
   },
   {
     id: 10,
-    codigo: 'ELE-UNI-010',
+    codigo: 'ELE-NGK-010',
     referenciaOEM: 'CR9EIX-IRIDIUM',
     nombre: 'Bujía de Iridio NGK Laser Iridium Rosca Larga M10',
     zonaId: 'motor',
     subparte: 'Bujías y Encendido',
-    marcaMoto: 'Universal',
-    cilindraje: 'Universal',
-    anoCompatibilidad: 'Universal',
-    modelosCompatibles: ['Yamaha R3 / MT-03', 'Kawasaki Ninja 300 / 400 / ZX-10R', 'Suzuki GSX-R', 'KTM 390'],
+    marcaMoto: 'Yamaha',
+    cilindraje: '300cc - 400cc',
+    anoCompatibilidad: '2016 - 2025',
+    modelosCompatibles: ['Yamaha R3 / MT-03', 'Kawasaki Ninja 300 / 400 / ZX-10R', 'Suzuki GSX-R 600/750', 'KTM Duke 390'],
     stockActual: 24,
     stockMinimo: 10,
     precioCosto: 28000,
@@ -1261,15 +1261,15 @@ export const REPUESTOS_INICIALES: Repuesto[] = [
   },
   {
     id: 13,
-    codigo: 'FRE-UNI-013',
+    codigo: 'FRE-YAM-013',
     referenciaOEM: 'MOTUL-DOT4-500ML',
-    nombre: 'Líquido de Frenos Sintético Motul DOT 4 / 5.1 Racing 500ml',
+    nombre: 'Líquido de Frenos Sintético Motul DOT 4 Racing 500ml Yamaha YZF / FZ',
     zonaId: 'frenos_suspension',
     subparte: 'Líquido DOT4 y Líneas Blindadas',
-    marcaMoto: 'Universal',
-    cilindraje: 'Universal',
-    anoCompatibilidad: 'Universal',
-    modelosCompatibles: ['Compatible con todos los sistemas hidráulicos de frenos de disco y ABS'],
+    marcaMoto: 'Yamaha',
+    cilindraje: '150cc - 321cc',
+    anoCompatibilidad: '2016 - 2025',
+    modelosCompatibles: ['Yamaha FZ 2.0 / 25', 'Yamaha R3 / MT-03', 'Yamaha NMAX 155'],
     stockActual: 20,
     stockMinimo: 8,
     precioCosto: 22000,
@@ -1282,15 +1282,15 @@ export const REPUESTOS_INICIALES: Repuesto[] = [
   },
   {
     id: 15,
-    codigo: 'MAN-UNI-015',
-    referenciaOEM: 'CNC-LEV-UNIV-B01',
+    codigo: 'MAN-BAJ-015',
+    referenciaOEM: 'CNC-LEV-BAJ-NS200',
     nombre: 'Juego de Maniguetas Deportivas CNC Regulables en 6 Posiciones',
     zonaId: 'mandos_guayas',
     subparte: 'Maniguetas y Bombas de Freno',
-    marcaMoto: 'Universal',
-    cilindraje: 'Universal',
-    anoCompatibilidad: 'Universal',
-    modelosCompatibles: ['Pulsar NS 200', 'Yamaha FZ / MT', 'Suzuki Gixxer', 'Honda CB 190R'],
+    marcaMoto: 'Bajaj',
+    cilindraje: '200cc',
+    anoCompatibilidad: '2016 - 2025',
+    modelosCompatibles: ['Pulsar NS 200', 'Pulsar RS 200', 'Pulsar NS 160', 'Yamaha FZ 2.0', 'Suzuki Gixxer 150'],
     stockActual: 7,
     stockMinimo: 3,
     precioCosto: 48000,
@@ -1303,15 +1303,15 @@ export const REPUESTOS_INICIALES: Repuesto[] = [
   },
   {
     id: 16,
-    codigo: 'MAN-UNI-016',
-    referenciaOEM: 'MIR-STEALTH-01',
-    nombre: 'Espejos Retrovisores Tipo Winglet Alerón Aerodinámico',
+    codigo: 'MAN-KAW-016',
+    referenciaOEM: 'MIR-STEALTH-NINJA',
+    nombre: 'Espejos Retrovisores Tipo Winglet Alerón Aerodinámico Carenaje',
     zonaId: 'mandos_guayas',
     subparte: 'Espejos Retrovisores Homologados',
-    marcaMoto: 'Universal',
-    cilindraje: 'Universal',
-    anoCompatibilidad: 'Universal',
-    modelosCompatibles: ['Ninja 400', 'R3', 'Pulsar RS 200', 'Gixxer SF', 'CBR 250'],
+    marcaMoto: 'Kawasaki',
+    cilindraje: '250cc - 400cc',
+    anoCompatibilidad: '2018 - 2025',
+    modelosCompatibles: ['Ninja 400', 'Ninja 250', 'Ninja ZX-6R', 'Yamaha R3', 'Pulsar RS 200'],
     stockActual: 6,
     stockMinimo: 2,
     precioCosto: 65000,
@@ -1324,15 +1324,15 @@ export const REPUESTOS_INICIALES: Repuesto[] = [
   },
   {
     id: 19,
-    codigo: 'CAR-UNI-019',
-    referenciaOEM: 'SLD-UNIV-PRO',
+    codigo: 'CAR-BAJ-019',
+    referenciaOEM: 'SLD-NS200-PRO',
     nombre: 'Sliders de Protección de Chasis y Motor con Puntas de Teflón Delrin',
     zonaId: 'carenaje_chasis',
     subparte: 'Sliders, Defensas y Estriberas CNC',
-    marcaMoto: 'Universal',
-    cilindraje: 'Universal',
-    anoCompatibilidad: 'Universal',
-    modelosCompatibles: ['Yamaha FZ', 'Pulsar NS 200', 'Gixxer 250', 'Duke 200', 'CB190R'],
+    marcaMoto: 'Bajaj',
+    cilindraje: '200cc',
+    anoCompatibilidad: '2015 - 2025',
+    modelosCompatibles: ['Pulsar NS 200 FI', 'Pulsar NS 160', 'Yamaha FZ 2.0 / FZ 25', 'KTM Duke 200'],
     stockActual: 11,
     stockMinimo: 4,
     precioCosto: 58000,
@@ -1345,15 +1345,15 @@ export const REPUESTOS_INICIALES: Repuesto[] = [
   },
   {
     id: 20,
-    codigo: 'MOT-UNI-020',
-    referenciaOEM: 'FLT-OIL-HF303',
+    codigo: 'MOT-YAM-020',
+    referenciaOEM: 'FLT-OIL-HF303-R3',
     nombre: 'Filtro de Aceite Metálico Hiflofiltro con Válvula de Alivio',
     zonaId: 'motor',
     subparte: 'Bomba y Filtro de Aceite',
-    marcaMoto: 'Universal',
-    cilindraje: 'Universal',
-    anoCompatibilidad: 'Universal',
-    modelosCompatibles: ['Yamaha R3 / MT-03', 'Kawasaki Ninja 400 / 650 / ZX-10R', 'Honda CBR 600 / 1000'],
+    marcaMoto: 'Yamaha',
+    cilindraje: '321cc - 600cc',
+    anoCompatibilidad: '2015 - 2025',
+    modelosCompatibles: ['Yamaha R3 / MT-03', 'Kawasaki Ninja 400 / 650', 'Honda CBR 500R / 650R'],
     stockActual: 16,
     stockMinimo: 6,
     precioCosto: 24000,
@@ -1478,7 +1478,13 @@ export const ORDENES_COMPRA_INICIALES: OrdenCompra[] = [
     estado: 'RECIBIDA_COMPLETA',
     total: 3950000,
     itemsCount: 3,
-    fechaEntregaEstimada: '2026-10-08'
+    fechaEntregaEstimada: '2026-10-08',
+    items: [
+      { repuestoId: 101, codigo: 'SPO-KAW-001', nombre: 'Cúpula Parabrisas Doble Burbuja Racing Fumé', cantidadPedida: 5, cantidadRecibida: 5, costoUnitario: 145000, subtotal: 725000 },
+      { repuestoId: 104, codigo: 'SPO-KAW-004', nombre: 'Guardabarros Delantero en Fibra de Carbono', cantidadPedida: 3, cantidadRecibida: 3, costoUnitario: 195000, subtotal: 585000 },
+      { repuestoId: 110, codigo: 'SPO-KAW-010', nombre: 'Sistema de Escape Slip-On Akrapovic Titanio', cantidadPedida: 2, cantidadRecibida: 2, costoUnitario: 1320000, subtotal: 2640000 }
+    ],
+    observaciones: 'Pedido para stock de motos superdeportivas Kawasaki ZX-10RR'
   },
   {
     id: 2,
@@ -1489,7 +1495,75 @@ export const ORDENES_COMPRA_INICIALES: OrdenCompra[] = [
     estado: 'PENDIENTE',
     total: 1120000,
     itemsCount: 2,
-    fechaEntregaEstimada: '2026-10-12'
+    fechaEntregaEstimada: '2026-10-15',
+    items: [
+      { repuestoId: 19, codigo: 'CAR-BAJ-019', nombre: 'Sliders de Protección de Chasis y Motor Pulsar NS 200', cantidadPedida: 10, cantidadRecibida: 0, costoUnitario: 58000, subtotal: 580000 },
+      { repuestoId: 15, codigo: 'MAN-BAJ-015', nombre: 'Juego de Maniguetas Deportivas CNC Regulables', cantidadPedida: 10, cantidadRecibida: 0, costoUnitario: 48000, subtotal: 480000 }
+    ],
+    observaciones: 'Repuestos de alta rotación para Bajaj Pulsar NS200 y Yamaha'
+  }
+];
+
+export const MANUALES_MOTO_INICIALES = [
+  {
+    id: 'man_kaw_zx10r',
+    titulo: 'Manual de Taller y Despiece Completo Kawasaki Ninja ZX-10R / ZX-10RR',
+    marca: 'Kawasaki',
+    modelo: 'Ninja ZX-10R / ZX-10RR',
+    cilindraje: '998cc',
+    ano: '2016 - 2025',
+    categoria: 'Taller / Despiece' as const,
+    tamanoMb: 34.5,
+    fechaSubida: '2026-10-01',
+    descripcion: 'Manual de servicio de fábrica con pares de apriete (torques), sincronización del árbol de levas, reglaje de válvulas y esquemas de ensamblaje por despiece.'
+  },
+  {
+    id: 'man_baj_ns200',
+    titulo: 'Manual de Servicio Técnico y Taller Bajaj Pulsar NS 200 / RS 200 FI',
+    marca: 'Bajaj',
+    modelo: 'Pulsar NS 200 / RS 200',
+    cilindraje: '199.5cc',
+    ano: '2015 - 2025',
+    categoria: 'Taller / Despiece' as const,
+    tamanoMb: 22.8,
+    fechaSubida: '2026-10-05',
+    descripcion: 'Manual oficial con especificaciones del motor Triple Chispa 4 Válvulas, sistema de refrigeración líquida, embrague anti-rebote y tolerancias del cilindro.'
+  },
+  {
+    id: 'man_yam_fz25',
+    titulo: 'Diagrama Eléctrico y Manual de Diagnóstico Yamaha FZ 2.0 / FZ 25 Blue Core',
+    marca: 'Yamaha',
+    modelo: 'FZ 2.0 Fi / FZ 25',
+    cilindraje: '150cc - 250cc',
+    ano: '2018 - 2024',
+    categoria: 'Diagrama Eléctrico' as const,
+    tamanoMb: 14.2,
+    fechaSubida: '2026-10-10',
+    descripcion: 'Esquema a color del cableado del estator, regulador/rectificador, códigos de falla de la ECU de inyección electrónica y pruebas con multímetro.'
+  },
+  {
+    id: 'man_suz_gixxer',
+    titulo: 'Manual de Despiece y Catálogo de Partes Suzuki Gixxer 150 / 250 SF',
+    marca: 'Suzuki',
+    modelo: 'Gixxer 150 / 250 SF',
+    cilindraje: '155cc - 249cc',
+    ano: '2019 - 2025',
+    categoria: 'Taller / Despiece' as const,
+    tamanoMb: 18.0,
+    fechaSubida: '2026-10-15',
+    descripcion: 'Catálogo de repuestos con números OEM originales Suzuki, vistas de explosión de la caja de cambios y sistema de refrigeración por aceite SOCS.'
+  },
+  {
+    id: 'man_ktm_duke390',
+    titulo: 'Manual Técnico de Inyección Electrónica Bosch & ABS KTM Duke 390 / RC 390',
+    marca: 'KTM',
+    modelo: 'Duke 390 / RC 390',
+    cilindraje: '373cc',
+    ano: '2017 - 2024',
+    categoria: 'Inyección Electrónica' as const,
+    tamanoMb: 28.6,
+    fechaSubida: '2026-10-20',
+    descripcion: 'Guía técnica para diagnóstico del cuerpo de aceleración electrónico Ride-by-Wire, sensor TPS, bomba de gasolina de alta presión y purgado de ABS Bosch 9MP.'
   }
 ];
 
@@ -1500,3 +1574,93 @@ export const TERMINALES_LAN: TerminalLAN[] = [
   { id: 'TERM-04', nombre: 'Oficina Bodega & Inventario', ip: '192.168.1.104', rol: 'BODEGUERO', activa: true },
   { id: 'TERM-05', nombre: 'Estación Jefe de Taller / Gerencia', ip: '192.168.1.105', rol: 'ADMINISTRADOR', activa: true }
 ];
+
+export const FACTURAS_INICIALES: FacturaVenta[] = [
+  {
+    numero: 'FV-2026-10045',
+    fecha: '2026-10-05 16:45:00',
+    clienteNombre: 'Juan Carlos Restrepo',
+    clienteDocumento: '1020784912',
+    clienteTelefono: '314-889-1122',
+    placaMoto: 'WXT-44D',
+    modeloMoto: 'Yamaha FZ 2.0 (2022)',
+    cilindrajeMoto: '150cc',
+    items: [
+      {
+        repuesto: {
+          id: 1,
+          codigo: 'MOT-YAM-001',
+          referenciaOEM: '2PV-E2190-00-00',
+          nombre: 'Cadenilla de Distribución 96L Silent Type',
+          zonaId: 'motor',
+          subparte: 'Cadenilla y Distribución',
+          marcaMoto: 'Yamaha',
+          cilindraje: '150cc',
+          anoCompatibilidad: '2016 - 2024',
+          modelosCompatibles: ['FZ 16', 'FZ 2.0 Fi'],
+          stockActual: 14,
+          stockMinimo: 5,
+          precioCosto: 38000,
+          precioVenta: 62000,
+          ubicacionBodega: 'Estante M-01',
+          proveedorId: 1,
+          descripcion: 'Cadena de distribución de bajo rozamiento',
+          unidadMedida: 'Unidad'
+        },
+        cantidad: 2,
+        precioUnitario: 62000,
+        subtotal: 124000
+      }
+    ],
+    subtotal: 124000,
+    iva: 23560,
+    descuento: 0,
+    total: 147560,
+    metodoPago: 'Efectivo',
+    cajero: 'Caja Mostrador / Facturación'
+  },
+  {
+    numero: 'FV-2026-10046',
+    fecha: '2026-10-06 14:20:00',
+    clienteNombre: 'Andrés Felipe Gómez',
+    clienteDocumento: '1098453210',
+    clienteTelefono: '300-452-9988',
+    placaMoto: 'KRM-92F',
+    modeloMoto: 'Bajaj Pulsar NS 200 FI',
+    cilindrajeMoto: '200cc',
+    items: [
+      {
+        repuesto: {
+          id: 4,
+          codigo: 'MOT-BAJ-004',
+          referenciaOEM: '36DK0044-OEM',
+          nombre: 'Tensor de Cadenilla Hidráulico Anti-Retorno',
+          zonaId: 'motor',
+          subparte: 'Cadenilla y Distribución',
+          marcaMoto: 'Bajaj',
+          cilindraje: '200cc',
+          anoCompatibilidad: '2013 - 2025',
+          modelosCompatibles: ['Pulsar NS 200'],
+          stockActual: 3,
+          stockMinimo: 6,
+          precioCosto: 45000,
+          precioVenta: 78000,
+          ubicacionBodega: 'Estante M-03',
+          proveedorId: 3,
+          descripcion: 'Tensor de árbol de levas',
+          unidadMedida: 'Unidad'
+        },
+        cantidad: 1,
+        precioUnitario: 78000,
+        subtotal: 78000
+      }
+    ],
+    subtotal: 78000,
+    iva: 14820,
+    descuento: 0,
+    total: 92820,
+    metodoPago: 'Transferencia',
+    cajero: 'Caja Mostrador / Facturación'
+  }
+];
+

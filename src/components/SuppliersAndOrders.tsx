@@ -12,9 +12,17 @@ import {
   MapPin, 
   Building2, 
   AlertOctagon,
-  X
+  X,
+  FilePlus,
+  ArrowRight,
+  Download,
+  Trash2,
+  Calendar,
+  Layers,
+  Sparkles,
+  ClipboardList
 } from 'lucide-react';
-import { Proveedor, OrdenCompra, Repuesto } from '../types/workshop';
+import { Proveedor, OrdenCompra, OrdenCompraItem, Repuesto } from '../types/workshop';
 
 interface SuppliersAndOrdersProps {
   proveedores: Proveedor[];
@@ -28,7 +36,9 @@ interface SuppliersAndOrdersProps {
     costoUnitario: number;
     docRemision: string;
     observacion: string;
+    ordenCompraId?: number;
   }) => void;
+  onCrearOrdenCompra: (nuevaOrden: Omit<OrdenCompra, 'id'>) => void;
   onRegistrarDevolucion: (devolucion: {
     proveedorId: number;
     repuestoId: number;
@@ -44,6 +54,7 @@ export const SuppliersAndOrders: React.FC<SuppliersAndOrdersProps> = ({
   repuestos,
   onAddNewProveedor,
   onCrearOrdenEntrada,
+  onCrearOrdenCompra,
   onRegistrarDevolucion
 }) => {
   const [subTab, setSubTab] = useState<'proveedores' | 'entrada' | 'devolucion' | 'ordenes'>('proveedores');
@@ -60,7 +71,21 @@ export const SuppliersAndOrders: React.FC<SuppliersAndOrdersProps> = ({
     contactoNombre: ''
   });
 
+  // Modal NUEVA ORDEN DE COMPRA (PUNTO 2)
+  const [showNewOrderModal, setShowNewOrderModal] = useState(false);
+  const [newOrderProvId, setNewOrderProvId] = useState<number>(proveedores[0]?.id || 1);
+  const [newOrderEntrega, setNewOrderEntrega] = useState(() => {
+    const d = new Date();
+    d.setDate(d.getDate() + 7);
+    return d.toISOString().slice(0, 10);
+  });
+  const [newOrderObs, setNewOrderObs] = useState('Pedido urgente para abastecimiento semanal de bodega');
+  const [newOrderItems, setNewOrderItems] = useState<{ repuestoId: number; cantidad: number; costoUnitario: number }[]>([
+    { repuestoId: repuestos[0]?.id || 1, cantidad: 5, costoUnitario: repuestos[0]?.precioCosto || 35000 }
+  ]);
+
   // Formulario Orden de Entrada / Recepción
+  const [selectedOcId, setSelectedOcId] = useState<string>('NINGUNA');
   const [entradaForm, setEntradaForm] = useState({
     proveedorId: proveedores[0]?.id || 1,
     repuestoId: repuestos[0]?.id || 1,
@@ -69,6 +94,31 @@ export const SuppliersAndOrders: React.FC<SuppliersAndOrdersProps> = ({
     docRemision: `REM-${Math.floor(1000 + Math.random() * 9000)}`,
     observacion: 'Recepción conforme en almacén de repuestos.'
   });
+
+  // Al seleccionar una orden de compra para importar
+  const handleSelectOcToImport = (ocIdStr: string) => {
+    setSelectedOcId(ocIdStr);
+    if (ocIdStr === 'NINGUNA') return;
+
+    const oc = ordenesCompra.find(o => o.id === parseInt(ocIdStr));
+    if (!oc) return;
+
+    // Autoseleccionar proveedor de la OC
+    const primerItem = oc.items && oc.items.length > 0 ? oc.items[0] : null;
+    const repId = primerItem ? primerItem.repuestoId : (repuestos[0]?.id || 1);
+    const cant = primerItem ? (primerItem.cantidadPedida - primerItem.cantidadRecibida) || primerItem.cantidadPedida : 10;
+    const costo = primerItem ? primerItem.costoUnitario : 35000;
+
+    setEntradaForm(prev => ({
+      ...prev,
+      proveedorId: oc.proveedorId,
+      repuestoId: repId,
+      cantidad: Math.max(1, cant),
+      costoUnitario: costo,
+      docRemision: `FAC-PROV-${oc.numero}`,
+      observacion: `Recepción parcial/total de la Orden de Compra ${oc.numero}`
+    }));
+  };
 
   // Formulario Devolución por Defecto
   const [devForm, setDevForm] = useState({
@@ -97,12 +147,16 @@ export const SuppliersAndOrders: React.FC<SuppliersAndOrdersProps> = ({
 
   const handleExecuteEntrada = (e: React.FormEvent) => {
     e.preventDefault();
-    onCrearOrdenEntrada(entradaForm);
-    alert(`¡Entrada Registrada con éxito! Se sumaron ${entradaForm.cantidad} unidades al stock y se registró en Kardex.`);
+    onCrearOrdenEntrada({
+      ...entradaForm,
+      ordenCompraId: selectedOcId !== 'NINGUNA' ? parseInt(selectedOcId) : undefined
+    });
+    alert(`¡Entrada Registrada con éxito! Se sumaron ${entradaForm.cantidad} unidades al stock y se registró el movimiento de tipo ENTRADA en el Kardex.`);
     setEntradaForm(prev => ({
       ...prev,
       docRemision: `REM-${Math.floor(1000 + Math.random() * 9000)}`
     }));
+    setSelectedOcId('NINGUNA');
   };
 
   const handleExecuteDevolucion = (e: React.FormEvent) => {
@@ -113,6 +167,48 @@ export const SuppliersAndOrders: React.FC<SuppliersAndOrdersProps> = ({
       ...prev,
       docReferencia: `DEV-DEF-${Math.floor(100 + Math.random() * 900)}`
     }));
+  };
+
+  // Guardar nueva orden de compra
+  const handleSaveNewOrder = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newOrderItems.length === 0) return;
+
+    const prov = proveedores.find(p => p.id === newOrderProvId);
+    const numeroOC = `OC-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+    const now = new Date().toISOString().slice(0, 10);
+
+    const mappedItems: OrdenCompraItem[] = newOrderItems.map(item => {
+      const rep = repuestos.find(r => r.id === item.repuestoId)!;
+      return {
+        repuestoId: item.repuestoId,
+        codigo: rep.codigo,
+        nombre: rep.nombre,
+        cantidadPedida: item.cantidad,
+        cantidadRecibida: 0,
+        costoUnitario: item.costoUnitario,
+        subtotal: item.cantidad * item.costoUnitario
+      };
+    });
+
+    const totalCalculado = mappedItems.reduce((acc, it) => acc + it.subtotal, 0);
+
+    const nuevaOC: Omit<OrdenCompra, 'id'> = {
+      numero: numeroOC,
+      fecha: now,
+      proveedorId: newOrderProvId,
+      proveedorNombre: prov?.razonSocial || 'Proveedor General',
+      estado: 'PENDIENTE',
+      total: totalCalculado,
+      itemsCount: mappedItems.length,
+      fechaEntregaEstimada: newOrderEntrega,
+      items: mappedItems,
+      observaciones: newOrderObs
+    };
+
+    onCrearOrdenCompra(nuevaOC);
+    setShowNewOrderModal(false);
+    alert(`¡Orden de Compra ${numeroOC} creada exitosamente! Ahora puedes ir a la pestaña 'Recepción / Entrada' e importarla para asentar las piezas que vayan llegando.`);
   };
 
   return (
@@ -131,10 +227,21 @@ export const SuppliersAndOrders: React.FC<SuppliersAndOrdersProps> = ({
             Directorio de Proveedores ({proveedores.length})
           </button>
           <button
+            onClick={() => setSubTab('ordenes')}
+            className={`px-3 py-1.5 rounded-md font-medium transition-colors flex items-center gap-1.5 ${
+              subTab === 'ordenes'
+                ? 'bg-amber-500 text-slate-950 font-bold shadow-md'
+                : 'text-slate-400 hover:text-white'
+            }`}
+          >
+            <ClipboardList className="w-3.5 h-3.5" />
+            <span>Órdenes de Compra ({ordenesCompra.length})</span>
+          </button>
+          <button
             onClick={() => setSubTab('entrada')}
             className={`px-3 py-1.5 rounded-md font-medium transition-colors flex items-center gap-1.5 ${
               subTab === 'entrada'
-                ? 'bg-emerald-600 text-white font-bold'
+                ? 'bg-emerald-600 text-white font-bold shadow-md'
                 : 'text-slate-400 hover:text-white'
             }`}
           >
@@ -152,27 +259,29 @@ export const SuppliersAndOrders: React.FC<SuppliersAndOrdersProps> = ({
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Devolución por Defecto (- Stock)</span>
           </button>
-          <button
-            onClick={() => setSubTab('ordenes')}
-            className={`px-3 py-1.5 rounded-md font-medium transition-colors ${
-              subTab === 'ordenes'
-                ? 'bg-slate-800 text-amber-300 font-bold'
-                : 'text-slate-400 hover:text-white'
-            }`}
-          >
-            Órdenes de Compra ({ordenesCompra.length})
-          </button>
         </div>
 
-        {subTab === 'proveedores' && (
-          <button
-            onClick={() => setShowNewProvModal(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-lg text-xs font-bold transition-all shadow-md shadow-amber-500/20"
-          >
-            <Plus className="w-4 h-4" />
-            <span>+ Nuevo Proveedor</span>
-          </button>
-        )}
+        <div className="flex items-center gap-2">
+          {subTab === 'proveedores' && (
+            <button
+              onClick={() => setShowNewProvModal(true)}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-lg text-xs font-bold transition-all shadow-md shadow-amber-500/20"
+            >
+              <Plus className="w-4 h-4" />
+              <span>+ Nuevo Proveedor</span>
+            </button>
+          )}
+
+          {subTab === 'ordenes' && (
+            <button
+              onClick={() => setShowNewOrderModal(true)}
+              className="flex items-center gap-1.5 px-3.5 py-1.5 bg-gradient-to-r from-amber-500 to-amber-400 hover:from-amber-400 text-slate-950 rounded-lg text-xs font-bold transition-all shadow-lg shadow-amber-500/20"
+            >
+              <FilePlus className="w-4 h-4" />
+              <span>+ Crear Orden de Compra</span>
+            </button>
+          )}
+        </div>
       </div>
 
       {/* VISTA 1: DIRECTORIO DE PROVEEDORES */}
@@ -199,44 +308,118 @@ export const SuppliersAndOrders: React.FC<SuppliersAndOrdersProps> = ({
 
               <div className="space-y-1.5 text-xs text-slate-300 pt-2 border-t border-slate-800">
                 <div className="flex items-center gap-2">
-                  <Building2 className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-                  <span>Contacto Comercial: <strong>{prov.contactoNombre}</strong></span>
+                  <Phone className="w-3.5 h-3.5 text-amber-400" />
+                  <span>{prov.telefono}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Phone className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-                  <span className="font-mono">{prov.telefono}</span>
+                  <Mail className="w-3.5 h-3.5 text-sky-400" />
+                  <span>{prov.correo}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Mail className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-                  <span className="text-cyan-300">{prov.correo}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <MapPin className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                  <MapPin className="w-3.5 h-3.5 text-emerald-400" />
                   <span>{prov.direccion}, {prov.ciudad}</span>
                 </div>
-              </div>
-
-              <div className="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
-                <span>Repuestos asignados: {repuestos.filter(r => r.proveedorId === prov.id).length} ítems</span>
-                <button 
-                  onClick={() => {
-                    setEntradaForm(prev => ({ ...prev, proveedorId: prov.id }));
-                    setSubTab('entrada');
-                  }}
-                  className="text-amber-400 hover:text-amber-300 font-semibold"
-                >
-                  Registrar Entrada →
-                </button>
+                <div className="flex items-center gap-2">
+                  <Building2 className="w-3.5 h-3.5 text-purple-400" />
+                  <span className="text-slate-400">Contacto:</span>
+                  <span className="font-semibold text-slate-200">{prov.contactoNombre}</span>
+                </div>
               </div>
             </div>
           ))}
         </div>
       )}
 
-      {/* VISTA 2: ORDEN DE ENTRADA / RECEPCIÓN DE REPUESTOS */}
+      {/* VISTA 2: HISTORIAL Y GESTIÓN DE ÓRDENES DE COMPRA (PUNTO 2) */}
+      {subTab === 'ordenes' && (
+        <div className="space-y-4">
+          <div className="bg-slate-900 border border-slate-800 rounded-xl p-4 shadow-xl flex items-center justify-between">
+            <div>
+              <h3 className="text-sm font-bold text-white flex items-center gap-2">
+                <ClipboardList className="w-4 h-4 text-amber-400" />
+                Órdenes de Compra a Proveedores
+              </h3>
+              <p className="text-xs text-slate-400 mt-0.5">
+                Emite órdenes oficiales a tus distribuidores y luego impórtalas en la pestaña <strong>"Recepción / Entrada"</strong> para sumar el stock recibido.
+              </p>
+            </div>
+            <button
+              onClick={() => setShowNewOrderModal(true)}
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 rounded-lg text-xs font-bold transition-all"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Nueva Orden</span>
+            </button>
+          </div>
+
+          <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-xl">
+            <table className="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr className="bg-slate-950 text-slate-400 font-mono uppercase tracking-wider border-b border-slate-800 text-[11px]">
+                  <th className="py-3 px-3">N° Orden</th>
+                  <th className="py-3 px-3">Fecha Emisión</th>
+                  <th className="py-3 px-3">Proveedor</th>
+                  <th className="py-3 px-3">Entrega Estimada</th>
+                  <th className="py-3 px-3 text-center">Ítems</th>
+                  <th className="py-3 px-3 text-right">Valor Total</th>
+                  <th className="py-3 px-3 text-center">Estado</th>
+                  <th className="py-3 px-3 text-center">Acción</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-800">
+                {ordenesCompra.map((oc) => (
+                  <tr key={oc.id} className="hover:bg-slate-850/60 transition-colors">
+                    <td className="py-2.5 px-3 font-mono font-bold text-amber-400">{oc.numero}</td>
+                    <td className="py-2.5 px-3 text-slate-300 font-mono">{oc.fecha}</td>
+                    <td className="py-2.5 px-3 font-semibold text-white">{oc.proveedorNombre}</td>
+                    <td className="py-2.5 px-3 text-slate-400 font-mono">{oc.fechaEntregaEstimada}</td>
+                    <td className="py-2.5 px-3 text-center font-mono">
+                      <span className="px-2 py-0.5 bg-slate-800 rounded text-slate-200">
+                        {oc.itemsCount} piezas
+                      </span>
+                    </td>
+                    <td className="py-2.5 px-3 text-right font-mono font-bold text-emerald-400 text-sm">
+                      $ {oc.total.toLocaleString('es-CO')}
+                    </td>
+                    <td className="py-2.5 px-3 text-center">
+                      {oc.estado === 'RECIBIDA_COMPLETA' ? (
+                        <span className="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-bold text-[10px]">
+                          RECIBIDA
+                        </span>
+                      ) : (
+                        <span className="px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800 font-bold text-[10px] animate-pulse">
+                          PENDIENTE DE RECEPCIÓN
+                        </span>
+                      )}
+                    </td>
+                    <td className="py-2.5 px-3 text-center">
+                      <button
+                        onClick={() => {
+                          setSubTab('entrada');
+                          handleSelectOcToImport(oc.id.toString());
+                        }}
+                        className="px-2.5 py-1 bg-emerald-950 hover:bg-emerald-900 text-emerald-300 border border-emerald-700/60 rounded text-xs font-bold transition-all flex items-center gap-1 mx-auto"
+                        title="Importar esta orden en el módulo de recepción de entrada"
+                      >
+                        <PackageCheck className="w-3.5 h-3.5" />
+                        <span>Recibir Mercancía</span>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* VISTA 3: RECEPCIÓN / ENTRADA (+ STOCK Y KARDEX CON IMPORTACIÓN DE OC) */}
       {subTab === 'entrada' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-xl max-w-2xl mx-auto space-y-4">
-          <div className="pb-3 border-b border-slate-800">
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-xl space-y-4 max-w-2xl mx-auto">
+          <div>
+            <span className="text-emerald-400 font-mono text-xs font-bold uppercase tracking-wider">
+              Movimiento de Bodega: Entrada (+ Stock)
+            </span>
             <h3 className="text-base font-bold text-white flex items-center gap-2">
               <PackageCheck className="w-5 h-5 text-emerald-400" />
               Recepción de Repuestos / Orden de Entrada a Bodega
@@ -244,6 +427,37 @@ export const SuppliersAndOrders: React.FC<SuppliersAndOrdersProps> = ({
             <p className="text-xs text-slate-400 mt-1">
               Suma unidades al inventario físico e inserta automáticamente un movimiento de tipo <strong>ENTRADA</strong> en el Kardex.
             </p>
+          </div>
+
+          {/* IMPORTADOR DE ORDEN DE COMPRA (PUNTO 2 DE LA SOLICITUD) */}
+          <div className="bg-slate-950 border border-amber-500/30 rounded-xl p-3.5 space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-amber-400 flex items-center gap-1.5 font-mono">
+                <ClipboardList className="w-4 h-4 text-amber-400" />
+                ¿Deseas relacionar o importar una Orden de Compra previa?
+              </span>
+              <span className="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-bold">
+                Importación Rápida
+              </span>
+            </div>
+            <select
+              value={selectedOcId}
+              onChange={(e) => handleSelectOcToImport(e.target.value)}
+              className="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-xs text-slate-200 focus:outline-none focus:border-amber-500 font-mono"
+            >
+              <option value="NINGUNA">-- Entrada independiente sin Orden de Compra --</option>
+              {ordenesCompra.map(oc => (
+                <option key={oc.id} value={oc.id}>
+                  {oc.numero} · {oc.proveedorNombre} ({oc.estado}) - Total: ${oc.total.toLocaleString('es-CO')}
+                </option>
+              ))}
+            </select>
+            {selectedOcId !== 'NINGUNA' && (
+              <div className="text-[11px] text-emerald-400 bg-emerald-950/60 p-2 rounded border border-emerald-800 flex items-center gap-1.5">
+                <CheckCircle className="w-3.5 h-3.5 shrink-0" />
+                <span>Datos precargados desde la Orden de Compra. Ajusta la cantidad recibida física si llegó incompleta.</span>
+              </div>
+            )}
           </div>
 
           <form onSubmit={handleExecuteEntrada} className="space-y-3.5 text-xs">
@@ -290,7 +504,7 @@ export const SuppliersAndOrders: React.FC<SuppliersAndOrdersProps> = ({
               >
                 {repuestos.map(r => (
                   <option key={r.id} value={r.id}>
-                    [{r.codigo}] {r.nombre} - {r.marcaMoto} (Stock actual: {r.stockActual})
+                    [{r.codigo}] {r.nombre} - {r.marcaMoto} ({r.cilindraje}) - Stock actual: {r.stockActual}
                   </option>
                 ))}
               </select>
@@ -338,23 +552,26 @@ export const SuppliersAndOrders: React.FC<SuppliersAndOrdersProps> = ({
                 className="flex items-center gap-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold transition-all shadow-lg shadow-emerald-900/40"
               >
                 <PackageCheck className="w-4 h-4" />
-                <span>Asentar Entrada & Actualizar Kardex</span>
+                <span>Asentar Entrada y Sumar al Stock</span>
               </button>
             </div>
           </form>
         </div>
       )}
 
-      {/* VISTA 3: DEVOLUCIÓN POR REPUESTOS DEFECTUOSOS */}
+      {/* VISTA 4: DEVOLUCIÓN POR DEFECTO */}
       {subTab === 'devolucion' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-xl max-w-2xl mx-auto space-y-4">
-          <div className="pb-3 border-b border-slate-800">
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-xl space-y-4 max-w-2xl mx-auto">
+          <div>
+            <span className="text-purple-400 font-mono text-xs font-bold uppercase tracking-wider">
+              Movimiento de Bodega: Devolución (- Stock)
+            </span>
             <h3 className="text-base font-bold text-white flex items-center gap-2">
               <RotateCcw className="w-5 h-5 text-purple-400" />
-              Devolución de Compra por Repuesto Defectuoso
+              Devolución de Repuesto con Defecto de Fábrica
             </h3>
             <p className="text-xs text-slate-400 mt-1">
-              Descuenta el stock físico defectuoso y genera un asiento formal de auditoría en el Kardex como <strong>DEVOLUCION_PROVEEDOR</strong>.
+              Descuenta unidades no conformes del stock físico e inserta un movimiento <strong>DEVOLUCION_PROVEEDOR</strong> en Kardex para reclamo de garantía.
             </p>
           </div>
 
@@ -374,7 +591,7 @@ export const SuppliersAndOrders: React.FC<SuppliersAndOrdersProps> = ({
               </div>
 
               <div>
-                <label className="font-semibold text-slate-300 block mb-1">Acta / Folio de Devolución:</label>
+                <label className="font-semibold text-slate-300 block mb-1">Acta / Documento de Devolución:</label>
                 <input
                   type="text"
                   required
@@ -392,9 +609,9 @@ export const SuppliersAndOrders: React.FC<SuppliersAndOrdersProps> = ({
                 onChange={(e) => setDevForm({ ...devForm, repuestoId: parseInt(e.target.value) })}
                 className="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white focus:outline-none focus:border-purple-500"
               >
-                {repuestos.filter(r => r.stockActual > 0).map(r => (
+                {repuestos.map(r => (
                   <option key={r.id} value={r.id}>
-                    [{r.codigo}] {r.nombre} (Stock disponible: {r.stockActual})
+                    [{r.codigo}] {r.nombre} (Stock actual: {r.stockActual})
                   </option>
                 ))}
               </select>
@@ -437,47 +654,170 @@ export const SuppliersAndOrders: React.FC<SuppliersAndOrdersProps> = ({
         </div>
       )}
 
-      {/* VISTA 4: HISTORIAL DE ÓRDENES DE COMPRA */}
-      {subTab === 'ordenes' && (
-        <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-xl">
-          <table className="w-full text-left text-xs border-collapse">
-            <thead>
-              <tr className="bg-slate-950 text-slate-400 font-mono uppercase tracking-wider border-b border-slate-800 text-[11px]">
-                <th className="py-3 px-3">N° Orden</th>
-                <th className="py-3 px-3">Fecha Emisión</th>
-                <th className="py-3 px-3">Proveedor</th>
-                <th className="py-3 px-3">Entrega Estimada</th>
-                <th className="py-3 px-3 text-center">Ítems</th>
-                <th className="py-3 px-3 text-right">Valor Total</th>
-                <th className="py-3 px-3 text-center">Estado</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-slate-800">
-              {ordenesCompra.map((oc) => (
-                <tr key={oc.id} className="hover:bg-slate-850/60 transition-colors">
-                  <td className="py-2.5 px-3 font-mono font-bold text-amber-400">{oc.numero}</td>
-                  <td className="py-2.5 px-3 text-slate-300">{oc.fecha}</td>
-                  <td className="py-2.5 px-3 font-semibold text-white">{oc.proveedorNombre}</td>
-                  <td className="py-2.5 px-3 text-slate-400 font-mono">{oc.fechaEntregaEstimada}</td>
-                  <td className="py-2.5 px-3 text-center font-mono">{oc.itemsCount}</td>
-                  <td className="py-2.5 px-3 text-right font-mono font-bold text-emerald-400">
-                    $ {oc.total.toLocaleString('es-CO')}
-                  </td>
-                  <td className="py-2.5 px-3 text-center">
-                    {oc.estado === 'RECIBIDA_COMPLETA' ? (
-                      <span className="px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 font-bold text-[10px]">
-                        RECIBIDA
-                      </span>
-                    ) : (
-                      <span className="px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800 font-bold text-[10px]">
-                        PENDIENTE
-                      </span>
-                    )}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      {/* MODAL NUEVA ORDEN DE COMPRA (PUNTO 2) */}
+      {showNewOrderModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+          <form 
+            onSubmit={handleSaveNewOrder}
+            className="bg-slate-900 border border-slate-800 rounded-2xl p-6 max-w-2xl w-full shadow-2xl space-y-4 text-xs animate-in zoom-in-95"
+          >
+            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+              <div className="flex items-center gap-2">
+                <FilePlus className="w-5 h-5 text-amber-400" />
+                <h3 className="text-sm font-bold text-white">
+                  Generar Nueva Orden de Compra a Proveedor
+                </h3>
+              </div>
+              <button type="button" onClick={() => setShowNewOrderModal(false)} className="text-slate-400 hover:text-white">
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="font-semibold text-slate-300 block mb-1">Proveedor Destinatario *:</label>
+                <select
+                  value={newOrderProvId}
+                  onChange={(e) => setNewOrderProvId(parseInt(e.target.value))}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white focus:outline-none focus:border-amber-500"
+                >
+                  {proveedores.map(p => (
+                    <option key={p.id} value={p.id}>{p.razonSocial}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="font-semibold text-slate-300 block mb-1">Fecha Entrega Estimada *:</label>
+                <input 
+                  type="date"
+                  required
+                  value={newOrderEntrega}
+                  onChange={(e) => setNewOrderEntrega(e.target.value)}
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white focus:outline-none focus:border-amber-500"
+                />
+              </div>
+            </div>
+
+            {/* Lista de productos pedidos en la orden */}
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <label className="font-bold text-amber-400 uppercase tracking-wider text-[11px]">
+                  Productos a Solicitar al Distribuidor:
+                </label>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setNewOrderItems(prev => [
+                      ...prev,
+                      { repuestoId: repuestos[0]?.id || 1, cantidad: 5, costoUnitario: repuestos[0]?.precioCosto || 30000 }
+                    ]);
+                  }}
+                  className="px-2.5 py-1 bg-slate-800 hover:bg-slate-700 text-amber-300 rounded font-bold text-xs flex items-center gap-1"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  <span>+ Agregar Ítem</span>
+                </button>
+              </div>
+
+              <div className="max-h-56 overflow-y-auto space-y-2 pr-1">
+                {newOrderItems.map((item, idx) => {
+                  const rep = repuestos.find(r => r.id === item.repuestoId);
+                  return (
+                    <div key={idx} className="bg-slate-950 p-2.5 rounded-lg border border-slate-800 flex items-center gap-2">
+                      <select
+                        value={item.repuestoId}
+                        onChange={(e) => {
+                          const newId = parseInt(e.target.value);
+                          const sel = repuestos.find(r => r.id === newId);
+                          const updated = [...newOrderItems];
+                          updated[idx] = {
+                            ...updated[idx],
+                            repuestoId: newId,
+                            costoUnitario: sel?.precioCosto || updated[idx].costoUnitario
+                          };
+                          setNewOrderItems(updated);
+                        }}
+                        className="flex-1 bg-slate-900 border border-slate-700 rounded p-1.5 text-xs text-white"
+                      >
+                        {repuestos.map(r => (
+                          <option key={r.id} value={r.id}>
+                            [{r.codigo}] {r.nombre} ({r.marcaMoto})
+                          </option>
+                        ))}
+                      </select>
+
+                      <div className="w-24">
+                        <input 
+                          type="number"
+                          min="1"
+                          placeholder="Cant"
+                          value={item.cantidad}
+                          onChange={(e) => {
+                            const val = parseInt(e.target.value) || 1;
+                            const updated = [...newOrderItems];
+                            updated[idx].cantidad = val;
+                            setNewOrderItems(updated);
+                          }}
+                          className="w-full bg-slate-900 border border-slate-700 rounded p-1.5 text-xs text-white font-mono text-center"
+                        />
+                      </div>
+
+                      <div className="w-28 text-right font-mono font-bold text-emerald-400">
+                        $ {(item.cantidad * item.costoUnitario).toLocaleString('es-CO')}
+                      </div>
+
+                      {newOrderItems.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setNewOrderItems(newOrderItems.filter((_, i) => i !== idx));
+                          }}
+                          className="text-slate-500 hover:text-red-400 p-1"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              <div className="bg-slate-950 p-2.5 rounded-lg border border-slate-800 flex items-center justify-between font-mono text-xs">
+                <span className="text-slate-400">Total Proyectado de la Orden:</span>
+                <span className="text-base font-bold text-emerald-400">
+                  $ {newOrderItems.reduce((acc, it) => acc + (it.cantidad * it.costoUnitario), 0).toLocaleString('es-CO')}
+                </span>
+              </div>
+            </div>
+
+            <div>
+              <label className="font-semibold text-slate-300 block mb-1">Notas / Condiciones Comerciales:</label>
+              <textarea 
+                rows={2}
+                value={newOrderObs}
+                onChange={(e) => setNewOrderObs(e.target.value)}
+                className="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-slate-300 focus:outline-none focus:border-amber-500"
+              />
+            </div>
+
+            <div className="pt-3 border-t border-slate-800 flex items-center justify-end gap-2">
+              <button
+                type="button"
+                onClick={() => setShowNewOrderModal(false)}
+                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl font-semibold"
+              >
+                Cancelar
+              </button>
+              <button
+                type="submit"
+                className="px-5 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-xl shadow-lg shadow-amber-500/20 flex items-center gap-1.5"
+              >
+                <CheckCircle className="w-4 h-4" />
+                <span>Generar Orden de Compra</span>
+              </button>
+            </div>
+          </form>
         </div>
       )}
 
@@ -500,50 +840,50 @@ export const SuppliersAndOrders: React.FC<SuppliersAndOrdersProps> = ({
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="font-semibold text-slate-300 block mb-1">NIT / Identificación:</label>
-                <input
+                <label className="font-semibold text-slate-300 block mb-1">NIT / Documento *:</label>
+                <input 
                   type="text"
                   required
-                  placeholder="900.123.456-7"
+                  placeholder="Ej. 900.548.120-4"
                   value={provForm.nit}
                   onChange={(e) => setProvForm({ ...provForm, nit: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-700 rounded py-1.5 px-2.5 text-white font-mono focus:outline-none focus:border-amber-500"
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white focus:outline-none focus:border-amber-500"
                 />
               </div>
 
               <div>
-                <label className="font-semibold text-slate-300 block mb-1">Razón Social:</label>
-                <input
+                <label className="font-semibold text-slate-300 block mb-1">Razón Social *:</label>
+                <input 
                   type="text"
                   required
-                  placeholder="Distribuciones Moto Ya S.A.S."
+                  placeholder="Ej. Repuestos Andina S.A.S."
                   value={provForm.razonSocial}
                   onChange={(e) => setProvForm({ ...provForm, razonSocial: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-700 rounded py-1.5 px-2.5 text-white focus:outline-none focus:border-amber-500"
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white focus:outline-none focus:border-amber-500"
                 />
               </div>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="font-semibold text-slate-300 block mb-1">Teléfono:</label>
-                <input
+                <label className="font-semibold text-slate-300 block mb-1">Teléfono Móvil / PBX:</label>
+                <input 
                   type="text"
-                  placeholder="+57 (601) 555-0100"
+                  placeholder="+57 (601) 458-9200"
                   value={provForm.telefono}
                   onChange={(e) => setProvForm({ ...provForm, telefono: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-700 rounded py-1.5 px-2.5 text-white font-mono focus:outline-none focus:border-amber-500"
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white focus:outline-none focus:border-amber-500"
                 />
               </div>
 
               <div>
                 <label className="font-semibold text-slate-300 block mb-1">Correo Electrónico:</label>
-                <input
+                <input 
                   type="email"
-                  placeholder="ventas@proveedor.com"
+                  placeholder="pedidos@proveedor.com"
                   value={provForm.correo}
                   onChange={(e) => setProvForm({ ...provForm, correo: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-700 rounded py-1.5 px-2.5 text-white focus:outline-none focus:border-amber-500"
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white focus:outline-none focus:border-amber-500"
                 />
               </div>
             </div>
@@ -551,49 +891,49 @@ export const SuppliersAndOrders: React.FC<SuppliersAndOrdersProps> = ({
             <div className="grid grid-cols-2 gap-3">
               <div>
                 <label className="font-semibold text-slate-300 block mb-1">Dirección:</label>
-                <input
+                <input 
                   type="text"
-                  placeholder="Calle 10 # 20-30"
+                  placeholder="Calle 13 # 42-50"
                   value={provForm.direccion}
                   onChange={(e) => setProvForm({ ...provForm, direccion: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-700 rounded py-1.5 px-2.5 text-white focus:outline-none focus:border-amber-500"
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white focus:outline-none focus:border-amber-500"
                 />
               </div>
 
               <div>
                 <label className="font-semibold text-slate-300 block mb-1">Ciudad:</label>
-                <input
+                <input 
                   type="text"
-                  placeholder="Bogotá / Medellín / Cali"
+                  placeholder="Bogotá"
                   value={provForm.ciudad}
                   onChange={(e) => setProvForm({ ...provForm, ciudad: e.target.value })}
-                  className="w-full bg-slate-950 border border-slate-700 rounded py-1.5 px-2.5 text-white focus:outline-none focus:border-amber-500"
+                  className="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white focus:outline-none focus:border-amber-500"
                 />
               </div>
             </div>
 
             <div>
-              <label className="font-semibold text-slate-300 block mb-1">Nombre Persona de Contacto:</label>
-              <input
+              <label className="font-semibold text-slate-300 block mb-1">Nombre Asesor Comercial:</label>
+              <input 
                 type="text"
-                placeholder="Nombre del asesor comercial..."
+                placeholder="Carlos Mendoza"
                 value={provForm.contactoNombre}
                 onChange={(e) => setProvForm({ ...provForm, contactoNombre: e.target.value })}
-                className="w-full bg-slate-950 border border-slate-700 rounded py-1.5 px-2.5 text-white focus:outline-none focus:border-amber-500"
+                className="w-full bg-slate-950 border border-slate-700 rounded-lg p-2 text-white focus:outline-none focus:border-amber-500"
               />
             </div>
 
-            <div className="flex items-center justify-end gap-2 pt-3 border-t border-slate-800">
+            <div className="pt-3 border-t border-slate-800 flex justify-end gap-2">
               <button
                 type="button"
                 onClick={() => setShowNewProvModal(false)}
-                className="px-3 py-1.5 rounded bg-slate-800 text-slate-300 hover:text-white"
+                className="px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg font-semibold"
               >
                 Cancelar
               </button>
               <button
                 type="submit"
-                className="px-4 py-1.5 rounded bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold"
+                className="px-5 py-2 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg shadow-md shadow-amber-500/20"
               >
                 Guardar Proveedor
               </button>

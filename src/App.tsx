@@ -1,10 +1,12 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Header } from './components/Header';
+import { Header, NavTab } from './components/Header';
 import { MotorcycleExplorer } from './components/MotorcycleExplorer';
 import { CartSidebar, ClienteInfo } from './components/CartSidebar';
 import { InventoryManager } from './components/InventoryManager';
 import { KardexView } from './components/KardexView';
 import { SuppliersAndOrders } from './components/SuppliersAndOrders';
+import { InvoicesTraceability } from './components/InvoicesTraceability';
+import { MotorcycleManualsManager } from './components/MotorcycleManualsManager';
 import { JavaArchitectureExplorer } from './components/JavaArchitectureExplorer';
 import { AdminModule } from './components/AdminModule';
 import { QuotationModal } from './components/QuotationModal';
@@ -14,7 +16,6 @@ import { AdminAuthModal } from './components/AdminAuthModal';
 import { TerminalInfoModal } from './components/TerminalInfoModal';
 import { DocumentationModal } from './components/DocumentationModal';
 import { AutoUpdaterModal } from './components/AutoUpdaterModal';
-import { NavTab } from './components/Header';
 
 import { 
   REPUESTOS_INICIALES, 
@@ -22,7 +23,9 @@ import {
   KARDEX_INICIAL, 
   ORDENES_COMPRA_INICIALES, 
   TERMINALES_LAN,
-  TALLER_CONFIG_INICIAL
+  TALLER_CONFIG_INICIAL,
+  FACTURAS_INICIALES,
+  MANUALES_MOTO_INICIALES
 } from './data/initialData';
 
 import { 
@@ -33,6 +36,7 @@ import {
   ItemCarrito, 
   Cotizacion, 
   FacturaVenta,
+  MotoManual,
   TallerConfig
 } from './types/workshop';
 
@@ -97,9 +101,29 @@ export default function App() {
   const [terminales, setTerminales] = useState(TERMINALES_LAN);
   const [terminalActual, setTerminalActual] = useState<string>('TERM-01');
 
-  // Estado del Carrito Persistente Lateral (PERSISTE ENTRE TODAS LAS VISTAS)
+  // Estado de Facturas para Trazabilidad
+  const [facturas, setFacturas] = useState<FacturaVenta[]>(() => {
+    try {
+      const saved = localStorage.getItem('mototaller_facturas');
+      return saved ? JSON.parse(saved) : FACTURAS_INICIALES;
+    } catch {
+      return FACTURAS_INICIALES;
+    }
+  });
+
+  // Estado de Biblioteca de Manuales Técnicos de Motos en PDF
+  const [manualesMoto, setManualesMoto] = useState<MotoManual[]>(() => {
+    try {
+      const saved = localStorage.getItem('mototaller_manuales_moto');
+      return saved ? JSON.parse(saved) : MANUALES_MOTO_INICIALES;
+    } catch {
+      return MANUALES_MOTO_INICIALES;
+    }
+  });
+
+  // Estado del Carrito Flotante Desplegable
   const [carrito, setCarrito] = useState<ItemCarrito[]>([]);
-  const [mobileCartOpen, setMobileCartOpen] = useState<boolean>(false);
+  const [isCartOpen, setIsCartOpen] = useState<boolean>(false);
 
   // Modales de Documentos
   const [cotizacionModal, setCotizacionModal] = useState<Cotizacion | null>(null);
@@ -144,6 +168,9 @@ export default function App() {
         ];
       }
     });
+
+    // Desplegar suavemente el panel para mostrar al usuario la pieza agregada
+    setIsCartOpen(true);
   };
 
   const handleUpdateQuantity = (repuestoId: number, nuevaCantidad: number) => {
@@ -183,15 +210,15 @@ export default function App() {
     const total = subtotal + iva;
     const now = new Date();
     const expire = new Date();
-    expire.setDate(now.getDate() + 15);
+    expire.setDate(now.getDate() + (tallerConfig.modulos?.cotizacionDiasVigencia || 15));
 
     const formatDt = (d: Date) => d.toISOString().slice(0, 10);
 
     const nuevaCotizacion: Cotizacion = {
-      numero: `COT-2026-${Math.floor(1000 + Math.random() * 9000)}`,
+      numero: `${tallerConfig.modulos?.cotizacionPrefijo || 'COT-'}2026-${Math.floor(1000 + Math.random() * 9000)}`,
       fecha: formatDt(now),
       vencimiento: formatDt(expire),
-      clienteNombre: clienteInfo.nombre,
+      clienteNombre: clienteInfo.nombre || 'Cliente Particular',
       clienteDocumento: clienteInfo.documento,
       clienteTelefono: clienteInfo.telefono,
       placaMoto: clienteInfo.placa,
@@ -206,10 +233,12 @@ export default function App() {
     };
 
     setCotizacionModal(nuevaCotizacion);
+    setCarrito([]);
+    setIsCartOpen(false);
   };
 
   // --------------------------------------------------------------------------
-  // FACTURAR / VENDER (DESCUENTA STOCK EN TIEMPO REAL E INSERTA KARDEX)
+  // FACTURAR / VENDER (DESCUENTA STOCK EN TIEMPO REAL, REGISTRA KARDEX Y FACTURA)
   // --------------------------------------------------------------------------
   const handleFacturarVenta = (clienteInfo: ClienteInfo) => {
     if (carrito.length === 0) return;
@@ -223,7 +252,7 @@ export default function App() {
       }
     }
 
-    const facturaNum = `FAC-2026-${Math.floor(10000 + Math.random() * 90000)}`;
+    const facturaNum = `${tallerConfig.modulos?.facturacionPrefijo || 'FV-'}2026-${Math.floor(10000 + Math.random() * 90000)}`;
     const nowStr = new Date().toISOString().replace('T', ' ').substring(0, 19);
 
     // 2. Descontar stock
@@ -259,11 +288,7 @@ export default function App() {
       };
     });
 
-    // 4. Actualizar estados
-    setRepuestos(updatedRepuestos);
-    setKardex(prev => [...nuevosMovimientosKardex, ...prev]);
-
-    // 5. Crear documento de Factura para imprimir
+    // 4. Crear documento de Factura para imprimir y trazabilidad
     const subtotal = carrito.reduce((acc, item) => acc + item.subtotal, 0);
     const iva = Math.round(subtotal * 0.19);
     const total = subtotal + iva;
@@ -285,8 +310,22 @@ export default function App() {
       cajero: currentTerminalObj.nombre
     };
 
+    // 5. Actualizar estados
+    setRepuestos(updatedRepuestos);
+    setKardex(prev => [...nuevosMovimientosKardex, ...prev]);
+    setFacturas(prev => {
+      const updated = [nuevaFactura, ...prev];
+      try {
+        localStorage.setItem('mototaller_facturas', JSON.stringify(updated));
+      } catch (e) {
+        console.warn('No se pudo guardar factura en storage:', e);
+      }
+      return updated;
+    });
+
     setFacturaModal(nuevaFactura);
     setCarrito([]);
+    setIsCartOpen(false);
   };
 
   // --------------------------------------------------------------------------
@@ -359,7 +398,16 @@ export default function App() {
   };
 
   // --------------------------------------------------------------------------
-  // ORDEN DE ENTRADA / RECEPCIÓN
+  // CREAR ORDEN DE COMPRA (PUNTO 2)
+  // --------------------------------------------------------------------------
+  const handleCrearOrdenCompra = (nuevaOrden: Omit<OrdenCompra, 'id'>) => {
+    const newId = ordenesCompra.length > 0 ? Math.max(...ordenesCompra.map(o => o.id)) + 1 : 1;
+    const fullOrden: OrdenCompra = { ...nuevaOrden, id: newId };
+    setOrdenesCompra(prev => [fullOrden, ...prev]);
+  };
+
+  // --------------------------------------------------------------------------
+  // ORDEN DE ENTRADA / RECEPCIÓN (+ STOCK Y KARDEX CON ORDEN DE COMPRA ASOCIADA)
   // --------------------------------------------------------------------------
   const handleCrearOrdenEntrada = (orden: {
     proveedorId: number;
@@ -368,6 +416,7 @@ export default function App() {
     costoUnitario: number;
     docRemision: string;
     observacion: string;
+    ordenCompraId?: number;
   }) => {
     const rep = repuestos.find(r => r.id === orden.repuestoId);
     if (!rep) return;
@@ -375,6 +424,7 @@ export default function App() {
     const saldoAnterior = rep.stockActual;
     const saldoPosterior = saldoAnterior + orden.cantidad;
 
+    // 1. Actualizar el stock del repuesto inmediatamente
     setRepuestos(prev => prev.map(r => r.id === orden.repuestoId ? {
       ...r,
       stockActual: saldoPosterior,
@@ -383,6 +433,7 @@ export default function App() {
 
     const prov = proveedores.find(p => p.id === orden.proveedorId);
 
+    // 2. Insertar movimiento de ENTRADA en el Kardex
     const movKardex: MovimientoKardex = {
       id: Date.now(),
       fecha: new Date().toISOString().replace('T', ' ').substring(0, 19),
@@ -402,6 +453,27 @@ export default function App() {
     };
 
     setKardex(prev => [movKardex, ...prev]);
+
+    // 3. Si se relacionó una orden de compra, actualizar sus cantidades recibidas y estado
+    if (orden.ordenCompraId) {
+      setOrdenesCompra(prev => prev.map(oc => {
+        if (oc.id === orden.ordenCompraId) {
+          const updatedItems = oc.items ? oc.items.map(it => {
+            if (it.repuestoId === orden.repuestoId) {
+              const rec = (it.cantidadRecibida || 0) + orden.cantidad;
+              return { ...it, cantidadRecibida: rec };
+            }
+            return it;
+          }) : [];
+          return {
+            ...oc,
+            items: updatedItems,
+            estado: 'RECIBIDA_COMPLETA' as const
+          };
+        }
+        return oc;
+      }));
+    }
   };
 
   // --------------------------------------------------------------------------
@@ -453,9 +525,36 @@ export default function App() {
     setKardex(prev => [movKardex, ...prev]);
   };
 
+  // --------------------------------------------------------------------------
+  // GESTIÓN DE MANUALES DE MOTOS EN PDF (PUNTO 6 Y 7)
+  // --------------------------------------------------------------------------
+  const handleAddMotoManual = (nuevoManual: MotoManual) => {
+    setManualesMoto(prev => {
+      const updated = [nuevoManual, ...prev];
+      try {
+        localStorage.setItem('mototaller_manuales_moto', JSON.stringify(updated));
+      } catch (e) {
+        console.warn('No se pudo guardar manual en storage:', e);
+      }
+      return updated;
+    });
+  };
+
+  const handleDeleteMotoManual = (manualId: string) => {
+    setManualesMoto(prev => {
+      const updated = prev.filter(m => m.id !== manualId);
+      try {
+        localStorage.setItem('mototaller_manuales_moto', JSON.stringify(updated));
+      } catch (e) {
+        console.warn('No se pudo guardar manual en storage:', e);
+      }
+      return updated;
+    });
+  };
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col font-sans">
-      {/* Barra de cabecera con logo del taller, red LAN y navegación */}
+      {/* Barra de cabecera con navegación limpia */}
       <Header
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -464,7 +563,7 @@ export default function App() {
         terminales={terminales}
         terminalActual={terminalActual}
         setTerminalActual={setTerminalActual}
-        onOpenCartMobile={() => setMobileCartOpen(true)}
+        onOpenCartMobile={() => setIsCartOpen(prev => !prev)}
         tallerConfig={tallerConfig}
         isAdminAuthenticated={isAdminAuthenticated}
         onOpenAdminAuth={() => setShowAdminAuthModal(true)}
@@ -472,116 +571,131 @@ export default function App() {
           setIsAdminAuthenticated(false);
           if (activeTab === 'admin') setActiveTab('explorador');
         }}
-        onOpenTerminalInfoModal={() => setShowTerminalInfoModal(true)}
-        onOpenDocumentationModal={() => setShowDocumentationModal(true)}
-        currentAppVersion={appVersion}
-        onOpenAutoUpdater={() => setShowAutoUpdaterModal(true)}
       />
 
-      {/* Contenido Principal con Layout Dividido */}
+      {/* Contenido Principal con Ancho Completo */}
       <main className="flex-1 p-4 max-w-[1720px] w-full mx-auto">
-        <div className="flex gap-4">
-          {/* Columna Izquierda: Vista activa */}
-          <div className="flex-1 min-w-0">
-            {activeTab === 'explorador' && (
-              <MotorcycleExplorer
-                repuestos={repuestos}
-                onAddToCart={handleAddToCart}
+        <div className="w-full">
+          {activeTab === 'explorador' && (
+            <MotorcycleExplorer
+              repuestos={repuestos}
+              onAddToCart={handleAddToCart}
+              tallerConfig={tallerConfig}
+            />
+          )}
+
+          {activeTab === 'inventario' && (
+            <InventoryManager
+              repuestos={repuestos}
+              proveedores={proveedores}
+              onUpdateStock={handleUpdateStockManual}
+              onAddNewRepuesto={handleAddNewRepuesto}
+            />
+          )}
+
+          {activeTab === 'kardex' && (
+            <KardexView
+              movimientos={kardex}
+              repuestos={repuestos}
+              proveedores={proveedores}
+            />
+          )}
+
+          {activeTab === 'proveedores' && (
+            <SuppliersAndOrders
+              proveedores={proveedores}
+              ordenesCompra={ordenesCompra}
+              repuestos={repuestos}
+              onAddNewProveedor={handleAddNewProveedor}
+              onCrearOrdenEntrada={handleCrearOrdenEntrada}
+              onCrearOrdenCompra={handleCrearOrdenCompra}
+              onRegistrarDevolucion={handleRegistrarDevolucion}
+            />
+          )}
+
+          {activeTab === 'facturas' && (
+            <InvoicesTraceability
+              facturas={facturas}
+              onVerFactura={(fac) => setFacturaModal(fac)}
+              tallerConfig={tallerConfig}
+            />
+          )}
+
+          {activeTab === 'manuales_moto' && (
+            <MotorcycleManualsManager
+              manuales={manualesMoto}
+              onAddManual={handleAddMotoManual}
+              onDeleteManual={handleDeleteMotoManual}
+              isAdmin={isAdminAuthenticated}
+              onOpenAdminAuth={() => setShowAdminAuthModal(true)}
+            />
+          )}
+
+          {activeTab === 'admin' && (
+            isAdminAuthenticated ? (
+              <AdminModule
                 tallerConfig={tallerConfig}
-              />
-            )}
-
-            {activeTab === 'inventario' && (
-              <InventoryManager
+                onSaveConfig={handleSaveBranding}
+                terminales={terminales}
+                setTerminales={setTerminales}
                 repuestos={repuestos}
                 proveedores={proveedores}
-                onUpdateStock={handleUpdateStockManual}
-                onAddNewRepuesto={handleAddNewRepuesto}
+                kardex={kardex}
+                onResetFactoryData={() => {
+                  setRepuestos(REPUESTOS_INICIALES);
+                  setProveedores(PROVEEDORES_INICIALES);
+                  setKardex(KARDEX_INICIAL);
+                  setOrdenesCompra(ORDENES_COMPRA_INICIALES);
+                  setTerminales(TERMINALES_LAN);
+                  setFacturas(FACTURAS_INICIALES);
+                  setManualesMoto(MANUALES_MOTO_INICIALES);
+                  handleSaveBranding(TALLER_CONFIG_INICIAL);
+                }}
+                onLogoutAdmin={() => {
+                  setIsAdminAuthenticated(false);
+                  setActiveTab('explorador');
+                }}
+                currentAppVersion={appVersion}
+                onApplyNewVersion={handleApplyNewVersion}
+                onOpenDocModal={() => setShowDocumentationModal(true)}
+                onOpenTerminalInfoModal={() => setShowTerminalInfoModal(true)}
               />
-            )}
-
-            {activeTab === 'kardex' && (
-              <KardexView
-                movimientos={kardex}
-                repuestos={repuestos}
-                proveedores={proveedores}
-              />
-            )}
-
-            {activeTab === 'proveedores' && (
-              <SuppliersAndOrders
-                proveedores={proveedores}
-                ordenesCompra={ordenesCompra}
-                repuestos={repuestos}
-                onAddNewProveedor={handleAddNewProveedor}
-                onCrearOrdenEntrada={handleCrearOrdenEntrada}
-                onRegistrarDevolucion={handleRegistrarDevolucion}
-              />
-            )}
-
-            {activeTab === 'admin' && (
-              isAdminAuthenticated ? (
-                <AdminModule
-                  tallerConfig={tallerConfig}
-                  onSaveConfig={handleSaveBranding}
-                  terminales={terminales}
-                  setTerminales={setTerminales}
-                  repuestos={repuestos}
-                  proveedores={proveedores}
-                  kardex={kardex}
-                  onResetFactoryData={() => {
-                    setRepuestos(REPUESTOS_INICIALES);
-                    setProveedores(PROVEEDORES_INICIALES);
-                    setKardex(KARDEX_INICIAL);
-                    setOrdenesCompra(ORDENES_COMPRA_INICIALES);
-                    setTerminales(TERMINALES_LAN);
-                    handleSaveBranding(TALLER_CONFIG_INICIAL);
-                  }}
-                  onLogoutAdmin={() => {
-                    setIsAdminAuthenticated(false);
-                    setActiveTab('explorador');
-                  }}
-                  currentAppVersion={appVersion}
-                  onApplyNewVersion={handleApplyNewVersion}
-                  onOpenDocModal={() => setShowDocumentationModal(true)}
-                />
-              ) : (
-                <div className="bg-slate-900 border border-slate-800 rounded-2xl p-12 text-center max-w-lg mx-auto my-12 space-y-4 shadow-2xl">
-                  <div className="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400 mx-auto flex items-center justify-center text-3xl font-black">
-                    🔒
-                  </div>
-                  <h3 className="text-lg font-bold text-white">Módulo de Administrador Protegido</h3>
-                  <p className="text-xs text-slate-400 leading-relaxed">
-                    Este panel contiene configuraciones sensibles, logo del taller, credenciales fiscales y código del sistema. Ingrese la contraseña maestra para continuar.
-                  </p>
-                  <button
-                    onClick={() => setShowAdminAuthModal(true)}
-                    className="px-6 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-xl transition-all shadow-lg shadow-amber-500/20"
-                  >
-                    Ingresar Contraseña de Administrador
-                  </button>
+            ) : (
+              <div className="bg-slate-900 border border-slate-800 rounded-2xl p-12 text-center max-w-lg mx-auto my-12 space-y-4 shadow-2xl">
+                <div className="w-16 h-16 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400 mx-auto flex items-center justify-center text-3xl font-black">
+                  🔒
                 </div>
-              )
-            )}
+                <h3 className="text-lg font-bold text-white">Módulo de Administrador Protegido</h3>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  Este panel contiene configuraciones sensibles, logo del taller, credenciales fiscales, centro de documentación oficial (Word/PDF), auto-update y código fuente. Ingrese la contraseña maestra para continuar.
+                </p>
+                <button
+                  onClick={() => setShowAdminAuthModal(true)}
+                  className="px-6 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs rounded-xl transition-all shadow-lg shadow-amber-500/20"
+                >
+                  Ingresar Contraseña de Administrador
+                </button>
+              </div>
+            )
+          )}
 
-            {activeTab === 'arquitectura' && (
-              <JavaArchitectureExplorer />
-            )}
-          </div>
-
-          {/* Columna Derecha: Carrito Persistente Lateral */}
-          <CartSidebar
-            carrito={carrito}
-            onUpdateQuantity={handleUpdateQuantity}
-            onRemoveItem={handleRemoveItem}
-            onClearCart={handleClearCart}
-            onGenerarCotizacion={handleGenerarCotizacion}
-            onFacturarVenta={handleFacturarVenta}
-            isOpenMobile={mobileCartOpen}
-            onCloseMobile={() => setMobileCartOpen(false)}
-          />
+          {activeTab === 'arquitectura' && (
+            <JavaArchitectureExplorer />
+          )}
         </div>
       </main>
+
+      {/* Carrito Flotante y Desplegable (PUNTO 4) */}
+      <CartSidebar
+        carrito={carrito}
+        onUpdateQuantity={handleUpdateQuantity}
+        onRemoveItem={handleRemoveItem}
+        onClearCart={handleClearCart}
+        onGenerarCotizacion={handleGenerarCotizacion}
+        onFacturarVenta={handleFacturarVenta}
+        isOpen={isCartOpen}
+        onToggleOpen={() => setIsCartOpen(prev => !prev)}
+      />
 
       {/* Modal de Cotización */}
       <QuotationModal
@@ -609,7 +723,7 @@ export default function App() {
         correctPassword={tallerConfig.adminPassword || 'admin123'}
       />
 
-      {/* Modal Informativo: Para qué se usa el Terminal de Trabajo */}
+      {/* Modal Informativo: Para qué se usa el Terminal de Trabajo (Exclusivo Admin) */}
       <TerminalInfoModal
         isOpen={showTerminalInfoModal}
         onClose={() => setShowTerminalInfoModal(false)}
@@ -632,7 +746,7 @@ export default function App() {
         tallerConfig={tallerConfig}
       />
 
-      {/* Modal de Auto-Updater & Despliegue CI/CD para Sustentación */}
+      {/* Modal de Auto-Updater & Despliegue CI/CD */}
       <AutoUpdaterModal
         isOpen={showAutoUpdaterModal}
         onClose={() => setShowAutoUpdaterModal(false)}
@@ -643,7 +757,7 @@ export default function App() {
 
       {/* Notificación Flotante de Actualización Aplicada con Éxito */}
       {updateToast && updateToast.show && (
-        <div className="fixed bottom-5 right-5 z-50 bg-slate-900 border-2 border-emerald-500 rounded-2xl p-4 shadow-2xl max-w-md animate-in slide-in-from-bottom-5 duration-300">
+        <div className="fixed bottom-5 left-5 z-50 bg-slate-900 border-2 border-emerald-500 rounded-2xl p-4 shadow-2xl max-w-md animate-in slide-in-from-bottom-5 duration-300">
           <div className="flex items-start gap-3">
             <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center shrink-0">
               <span className="text-xl">🚀</span>

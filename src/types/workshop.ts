@@ -108,6 +108,16 @@ export interface FacturaVenta {
   cajero: string;
 }
 
+export interface OrdenCompraItem {
+  repuestoId: number;
+  codigo: string;
+  nombre: string;
+  cantidadPedida: number;
+  cantidadRecibida: number;
+  costoUnitario: number;
+  subtotal: number;
+}
+
 export interface OrdenCompra {
   id: number;
   numero: string;
@@ -118,6 +128,22 @@ export interface OrdenCompra {
   total: number;
   itemsCount: number;
   fechaEntregaEstimada: string;
+  items?: OrdenCompraItem[];
+  observaciones?: string;
+}
+
+export interface MotoManual {
+  id: string;
+  titulo: string;
+  marca: string;
+  modelo: string;
+  cilindraje: string;
+  ano: string;
+  categoria: 'Taller / Despiece' | 'Manual de Usuario' | 'Diagrama Eléctrico' | 'Inyección Electrónica';
+  tamanoMb: number;
+  fechaSubida: string;
+  pdfUrl?: string; // Data URL o URL del PDF
+  descripcion: string;
 }
 
 export interface TerminalLAN {

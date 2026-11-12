@@ -30,8 +30,8 @@ export const KardexView: React.FC<KardexViewProps> = ({
   const [selectedTipo, setSelectedTipo] = useState<string>('todos');
   const [selectedProveedorId, setSelectedProveedorId] = useState<string>('todos');
   const [searchDoc, setSearchDoc] = useState<string>('');
-  const [fechaDesde, setFechaDesde] = useState<string>('2026-10-01');
-  const [fechaHasta, setFechaHasta] = useState<string>('2026-10-31');
+  const [fechaDesde, setFechaDesde] = useState<string>('');
+  const [fechaHasta, setFechaHasta] = useState<string>('');
 
   // Filtrado de movimientos
   const filteredMovimientos = useMemo(() => {

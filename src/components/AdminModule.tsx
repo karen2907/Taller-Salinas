@@ -67,6 +67,7 @@ interface AdminModuleProps {
   currentAppVersion?: string;
   onApplyNewVersion?: (version: string, notes: string) => void;
   onOpenDocModal?: () => void;
+  onOpenTerminalInfoModal?: () => void;
 }
 
 export const AdminModule: React.FC<AdminModuleProps> = ({
@@ -81,7 +82,8 @@ export const AdminModule: React.FC<AdminModuleProps> = ({
   onLogoutAdmin,
   currentAppVersion = '1.0.0',
   onApplyNewVersion,
-  onOpenDocModal
+  onOpenDocModal,
+  onOpenTerminalInfoModal
 }) => {
   const [activeSection, setActiveSection] = useState<'compania' | 'diagrama' | 'modulos' | 'codigo_sql' | 'documentacion' | 'kpis' | 'autoupdate'>('compania');
   const [savedSuccess, setSavedSuccess] = useState<boolean>(false);
@@ -816,9 +818,20 @@ export const AdminModule: React.FC<AdminModuleProps> = ({
                     {terminales.length} Terminales Activas
                   </span>
                 </div>
-                <p className="text-slate-400 text-[11px] mb-3">
+                <p className="text-slate-400 text-[11px] mb-2">
                   Permite identificar qué computadora realiza las cotizaciones, facturas y salidas de inventario en el taller.
                 </p>
+
+                {onOpenTerminalInfoModal && (
+                  <button
+                    type="button"
+                    onClick={onOpenTerminalInfoModal}
+                    className="mb-3 px-3 py-1.5 bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-colors"
+                  >
+                    <HelpCircle className="w-3.5 h-3.5 text-amber-400" />
+                    <span>¿Para qué sirve el Terminal de Trabajo en red local? (Ver Guía)</span>
+                  </button>
+                )}
 
                 {/* Lista de Terminales */}
                 <div className="space-y-2 max-h-[220px] overflow-y-auto pr-1">
