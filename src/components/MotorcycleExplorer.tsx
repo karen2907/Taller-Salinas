@@ -521,7 +521,7 @@ export const MotorcycleExplorer: React.FC<MotorcycleExplorerProps> = ({
           <div className="relative w-full aspect-[16/9] max-h-[580px] flex items-center justify-center bg-black">
             {/* Imagen Principal de la Kawasaki Ninja ZX-10RR */}
             <img 
-              src="/kawasaki_ninja_zx10r.jpg"
+              src="./kawasaki_ninja_zx10r.jpg"
               alt="Kawasaki Ninja ZX-10RR"
               onError={(e) => {
                 (e.target as HTMLImageElement).src = '/src/assets/kawasaki_ninja_zx10r.jpg';
